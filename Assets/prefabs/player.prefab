@@ -1,0 +1,163 @@
+{
+  "RootObject": {
+    "__guid": "6d54761d-da68-455f-9098-0ce3bd829e3c",
+    "Flags": 0,
+    "Name": "player",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Sandbox.SkinnedModelRenderer",
+        "__guid": "bc6b24d3-2b76-45a6-b687-19bada6e2df0",
+        "BodyGroups": 341,
+        "CreateBoneObjects": false,
+        "Model": "models/citizen/citizen.vmdl",
+        "RenderType": "On",
+        "Tint": "1,1,1,1",
+        "UseAnimGraph": true
+      },
+      {
+        "__type": "Sandbox.CharacterController",
+        "__guid": "a9004a17-3f14-4690-baa2-a9be3da6b938",
+        "Acceleration": 10,
+        "Bounciness": 0.3,
+        "GroundAngle": 45,
+        "Height": 64,
+        "IgnoreLayers": "",
+        "Radius": 16,
+        "StepHeight": 18,
+        "UseCollisionRules": false
+      },
+      {
+        "__type": "Sandbox.Citizen.CitizenAnimationHelper",
+        "__guid": "7f13f7be-e6d8-425c-ae5b-c0448314de22",
+        "BodyWeight": 1,
+        "EyesWeight": 1,
+        "HeadWeight": 1,
+        "LookAtEnabled": false,
+        "Target": {
+          "_type": "component",
+          "component_id": "bc6b24d3-2b76-45a6-b687-19bada6e2df0",
+          "go": "6d54761d-da68-455f-9098-0ce3bd829e3c",
+          "component_type": "SkinnedModelRenderer"
+        }
+      },
+      {
+        "__type": "Bbplayer",
+        "__guid": "65c9bf96-aebe-4330-9713-4c1c6e80ce74",
+        "AnimationHelper": {
+          "_type": "component",
+          "component_id": "7f13f7be-e6d8-425c-ae5b-c0448314de22",
+          "go": "6d54761d-da68-455f-9098-0ce3bd829e3c",
+          "component_type": "CitizenAnimationHelper"
+        },
+        "Camera": {
+          "_type": "gameobject",
+          "go": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a"
+        },
+        "CharacterController": {
+          "_type": "component",
+          "component_id": "a9004a17-3f14-4690-baa2-a9be3da6b938",
+          "go": "6d54761d-da68-455f-9098-0ce3bd829e3c",
+          "component_type": "CharacterController"
+        },
+        "EyePosition": "0,-0.7000002,61.70007",
+        "JumpStrength": 400,
+        "PunchColdown": 0.5,
+        "PunchRange": 50,
+        "PunchStrength": 1,
+        "Runspeed": 400.19,
+        "Walkspeed": 200
+      },
+      {
+        "__type": "Unitinfo",
+        "__guid": "3354f1c5-e75d-4904-b4de-d1265c5fc1ab",
+        "HealthRegenAmount": 0.5,
+        "HealthRegenTime": 3,
+        "MaxHealt": 10,
+        "Team": "None"
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
+        "Flags": 0,
+        "Name": "Camera",
+        "Position": "-331.091,5.039453,212.4492",
+        "Rotation": "-0.00003441819,0.1942358,0.0001740968,0.9809549",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.CameraComponent",
+            "__guid": "cf3cbf96-22b6-4be4-a5d0-672a96c17f9f",
+            "BackgroundColor": "0.33333,0.46275,0.52157,1",
+            "ClearFlags": "All",
+            "FieldOfView": 60,
+            "IsMainCamera": true,
+            "Orthographic": false,
+            "OrthographicHeight": 1204,
+            "Priority": 1,
+            "RenderExcludeTags": "",
+            "RenderTags": "",
+            "TargetEye": "None",
+            "Viewport": "0,0,1,1",
+            "ZFar": 10000,
+            "ZNear": 0.1
+          },
+          {
+            "__type": "Sandbox.Bloom",
+            "__guid": "d73ef723-c888-41d4-802e-f797c79318be",
+            "BloomColor": {
+              "color": [
+                {
+                  "c": "1,1,1,1"
+                },
+                {
+                  "t": 1,
+                  "c": "1,1,1,1"
+                }
+              ],
+              "alpha": []
+            },
+            "BloomCurve": [
+              {
+                "y": 0.5
+              },
+              {
+                "x": 1,
+                "y": 1
+              }
+            ],
+            "Mode": "Additive",
+            "Strength": 0.5,
+            "Threshold": 0.5,
+            "ThresholdWidth": 0.5
+          },
+          {
+            "__type": "Sandbox.Tonemapping",
+            "__guid": "9d76f362-7227-40eb-a189-69353c780c46",
+            "__version": 1,
+            "ExposureBias": 2,
+            "ExposureCompensation": 0,
+            "ExposureMethod": "RGB",
+            "MaximumExposure": 2,
+            "MinimumExposure": 1,
+            "Mode": "Legacy",
+            "Rate": 1
+          },
+          {
+            "__type": "Sandbox.Sharpen",
+            "__guid": "0bffee5e-19f2-41c4-88f9-faefbcce6bf4",
+            "Scale": 0.2
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

@@ -1,0 +1,62 @@
+{
+  "RootObject": {
+    "__guid": "de7520d8-2814-4687-8371-c0a30011960a",
+    "Flags": 0,
+    "Name": "snots",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Unitinfo",
+        "__guid": "5298d2a6-17a5-48fb-a678-80b94b5aaad0",
+        "HealthRegenAmount": 0.5,
+        "HealthRegenTime": 3,
+        "MaxHealt": 1.1,
+        "Team": "None"
+      },
+      {
+        "__type": "Sandbox.SkinnedModelRenderer",
+        "__guid": "3556e2c8-e5c6-470d-af0b-00402e7d65e9",
+        "BodyGroups": 18446744073709551615,
+        "CreateBoneObjects": false,
+        "Model": "models/snot/snot.vmdl",
+        "RenderType": "On",
+        "Tint": "1,1,1,1",
+        "UseAnimGraph": true
+      },
+      {
+        "__type": "Sandbox.SphereCollider",
+        "__guid": "4c1333ff-6046-47f1-829a-e3260980d0f3",
+        "Center": "0,0,0",
+        "IsTrigger": false,
+        "Radius": 35,
+        "Static": false
+      },
+      {
+        "__type": "SnotComponent",
+        "__guid": "469def0b-5918-4905-869a-1c4b2d1e5ba9",
+        "Info": {
+          "_type": "component",
+          "component_id": "5298d2a6-17a5-48fb-a678-80b94b5aaad0",
+          "go": "de7520d8-2814-4687-8371-c0a30011960a",
+          "component_type": "Unitinfo"
+        },
+        "ModelRenderer": {
+          "_type": "component",
+          "component_id": "3556e2c8-e5c6-470d-af0b-00402e7d65e9",
+          "go": "de7520d8-2814-4687-8371-c0a30011960a",
+          "component_type": "SkinnedModelRenderer"
+        }
+      }
+    ],
+    "Children": [],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [
+    "fish.snot"
+  ],
+  "__version": 1
+}

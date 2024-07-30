@@ -1,0 +1,81 @@
+{
+  "RootObject": {
+    "__guid": "8834ad25-3f90-4d0e-bee9-2fe6a69c7b35",
+    "Flags": 0,
+    "Name": "ball",
+    "Scale": "0.2,0.2,0.2",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Sandbox.ModelRenderer",
+        "__guid": "3d671787-2241-4fd9-b9e1-fcb875ae424f",
+        "BodyGroups": 18446744073709551615,
+        "Model": "models/dev/sphere.vmdl",
+        "RenderType": "On",
+        "Tint": "1,0.0093,0.0093,1"
+      },
+      {
+        "__type": "Sandbox.SphereCollider",
+        "__guid": "41f6aff1-6242-4ba6-b05e-58b7ae253d1a",
+        "Center": "0,0,0",
+        "IsTrigger": false,
+        "Radius": 10,
+        "Static": false
+      },
+      {
+        "__type": "BallBehavior",
+        "__guid": "7a904679-4848-4662-bb16-ee194fe9021c",
+        "BallSpeed": 500,
+        "Camera": {
+          "_type": "gameobject",
+          "go": "384dafe5-f013-4bef-ae25-b971b4177068"
+        },
+        "EyePosition": "0,0,0"
+      },
+      {
+        "__type": "Unitinfo",
+        "__guid": "b531058e-83f0-444d-8b4d-503339478b5e",
+        "HealthRegenAmount": 0.5,
+        "HealthRegenTime": 3,
+        "MaxHealt": 10,
+        "Team": "None"
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "384dafe5-f013-4bef-ae25-b971b4177068",
+        "Flags": 0,
+        "Name": "Camera",
+        "Position": "-442.5802,0,259.7493",
+        "Rotation": "0,0.258819,0,0.9659259",
+        "Scale": "2,2,2",
+        "Components": [
+          {
+            "__type": "Sandbox.CameraComponent",
+            "__guid": "223aed5d-55ec-4901-8c1d-67f888002839",
+            "BackgroundColor": "0.33333,0.46275,0.52157,1",
+            "ClearFlags": "All",
+            "FieldOfView": 60,
+            "IsMainCamera": true,
+            "Orthographic": false,
+            "OrthographicHeight": 1204,
+            "Priority": 1,
+            "RenderExcludeTags": "",
+            "RenderTags": "",
+            "TargetEye": "None",
+            "Viewport": "0,0,1,1",
+            "ZFar": 10000,
+            "ZNear": 10
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}
