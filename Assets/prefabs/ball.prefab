@@ -23,22 +23,18 @@
         "Static": false
       },
       {
-        "__type": "BallBehavior",
-        "__guid": "7a904679-4848-4662-bb16-ee194fe9021c",
-        "BallSpeed": 500,
-        "Camera": {
-          "_type": "gameobject",
-          "go": "384dafe5-f013-4bef-ae25-b971b4177068"
-        },
-        "EyePosition": "0,0,0"
-      },
-      {
         "__type": "Unitinfo",
         "__guid": "b531058e-83f0-444d-8b4d-503339478b5e",
         "HealthRegenAmount": 0.5,
         "HealthRegenTime": 3,
         "MaxHealt": 10,
         "Team": "None"
+      },
+      {
+        "__type": "Behavior",
+        "__guid": "fe46deaa-f956-4517-a260-cf4acf2c3467",
+        "BallSpeed": 500,
+        "EyePosition": "0,0,0"
       }
     ],
     "Children": [
