@@ -63,7 +63,7 @@
         "EyePosition": "0,-0.7000002,61.70007",
         "JumpStrength": 400,
         "PunchColdown": 0.5,
-        "PunchRange": 50,
+        "PunchRange": 100,
         "PunchStrength": 1,
         "Runspeed": 400.19,
         "Walkspeed": 200

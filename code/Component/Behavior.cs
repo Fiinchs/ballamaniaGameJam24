@@ -12,12 +12,16 @@ public sealed class Behavior : Component
 
 	[Property]
 	[Category( "Stats" )]
-	[Range( 0f, 10000f )]
-	public float BallSpeed { get; set; } = 500f;
+	[Range( 1f, 100f )]
+	public float BallSpeed { get; set; } = 40;
 
 
 	[Property]
 	public Bbplayer target { get; set; }
+
+	
+
+
 
 
 	protected override void OnStart()
@@ -34,16 +38,33 @@ public sealed class Behavior : Component
 
 	protected override void OnFixedUpdate()
 	{
-		Transform.Position += new Vector3( 5, 0, 0 );
+		Follow();
 	}
 
 	public void Follow()
 	{
-		Vector3 TargetPos = target.Transform.Position;
-		Vector3 BallPos = target.Transform.Position; 
+		Vector3 TargetPos = target.Transform.Position + new Vector3(0, 0, 50);
+		Vector3 BallPos = Transform.Position; 
 
-		Vector3 desiredPos = BallPos - TargetPos;
-		Transform.Position += desiredPos - 100; 
+		Vector3 desiredPos = TargetPos - BallPos;
+
+		//Log.Info( desiredPos );
+
+		Transform.Position += desiredPos/BallSpeed ;
+		
+	
 	}
+
+	public void punch(Vector3 direction)
+	{
+		Vector3 BallPos = Transform.Position;
+		Vector3 desiredPos = direction - BallPos;
+
+		Log.Info( desiredPos );
+
+		Transform.Position += desiredPos / BallSpeed;
+	}
+
+
 
 }

@@ -816,8 +816,73 @@
       "Name": "ball",
       "Position": "341.3759,47.13354,121.9971",
       "Enabled": true,
-      "__Prefab": "prefabs/ball.prefab",
-      "__PrefabVariables": {}
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "6f66463a-7a65-4688-9e52-b38f6c49d94f",
+          "BodyGroups": 18446744073709551615,
+          "Model": "models/dev/sphere.vmdl",
+          "RenderType": "On",
+          "Tint": "1,0.0093,0.0093,1"
+        },
+        {
+          "__type": "Sandbox.SphereCollider",
+          "__guid": "8d6398f9-2f55-47d7-90d9-39c3471d5dc8",
+          "Center": "0,0,0",
+          "IsTrigger": false,
+          "Radius": 10,
+          "Static": false
+        },
+        {
+          "__type": "Unitinfo",
+          "__guid": "a330a9c2-721a-477f-b806-08e67d1329b5",
+          "HealthRegenAmount": 0.5,
+          "HealthRegenTime": 3,
+          "MaxHealt": 10,
+          "Team": "None"
+        },
+        {
+          "__type": "Behavior",
+          "__guid": "3735f94c-9725-458c-b5e8-61ef7cb1c31a",
+          "BallSpeed": 50.5,
+          "EyePosition": "0,0,0",
+          "target": {
+            "_type": "component",
+            "component_id": "0775b8b5-1dd5-4169-95e9-4ec673589ef2",
+            "go": "96762e0a-228e-47b3-ab13-f0c281bd3b9e",
+            "component_type": "Bbplayer"
+          }
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "be0a45bb-350b-402f-8285-74f5f58b4ade",
+          "Flags": 0,
+          "Name": "Camera",
+          "Position": "-442.5802,0,259.7493",
+          "Rotation": "0,0.258819,0,0.9659259",
+          "Scale": "2,2,2",
+          "Components": [
+            {
+              "__type": "Sandbox.CameraComponent",
+              "__guid": "de3096b6-ebbd-4919-8b5e-40bc6d3928a1",
+              "BackgroundColor": "0.33333,0.46275,0.52157,1",
+              "ClearFlags": "All",
+              "FieldOfView": 60,
+              "IsMainCamera": true,
+              "Orthographic": false,
+              "OrthographicHeight": 1204,
+              "Priority": 1,
+              "RenderExcludeTags": "",
+              "RenderTags": "",
+              "TargetEye": "None",
+              "Viewport": "0,0,1,1",
+              "ZFar": 10000,
+              "ZNear": 10
+            }
+          ]
+        }
+      ]
     }
   ],
   "SceneProperties": {

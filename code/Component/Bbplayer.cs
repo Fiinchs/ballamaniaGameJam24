@@ -65,7 +65,7 @@ public sealed class Bbplayer : Component
 
 	[Property]
 	[Category( "Stats" )]
-	[Range( 0f, 20f, 5f )]
+	[Range( 0f, 200f, 5f )]
 	public float PunchRange { get; set; } = 50f;
 
 
@@ -222,10 +222,11 @@ public sealed class Bbplayer : Component
 			.Run();
 
 		if ( punchTrace.Hit )
-			if ( punchTrace.GameObject.Components.TryGet<Unitinfo>( out var unitinfo ) )
-				unitinfo.Damage( PunchStrength );
+			if ( punchTrace.GameObject.Components.TryGet<Behavior>( out var behavior ) )
+				behavior.punch( EyeWorldPostion );
 
-		_lastPunch = 0;
+
+			_lastPunch = 0;
 		
 	}
 	protected override void OnAwake()
