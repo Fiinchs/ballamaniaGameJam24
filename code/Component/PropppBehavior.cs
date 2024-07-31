@@ -1,19 +1,12 @@
 using Sandbox;
 using System;
 
-public sealed class Behavior : Component
+public sealed class PropppBehavior : Component
 {
-	[Property]
-	[Category( "Component" )]
-	public GameObject Camera { get; set; }
-
 	[Property]
 	[Category( "Stats" )]
 	[Range( 1f, 1000f, 10f )]
 	public float BallSpeed { get; set; } = 500f;
-
-	[Property]
-	public Bbplayer target { get; set; }
 
 	[Property]
 	public SphereCollider hitbox { get; set; }
@@ -23,11 +16,11 @@ public sealed class Behavior : Component
 	private Vector3 currentVelocity = Vector3.Zero; // Current velocity of the ball
 	private bool isPunched = false; // Punch indicator
 	private float punchTimer = 0f; // Timer for punch duration
-	public float punchDuration = 1f; // Duration for which the ball is repelled
+	public float punchDuration = 2f; // Duration for which the ball is repelled
 
 	protected override void OnStart()
 	{
-		
+		base.OnStart();
 	}
 
 	protected override void OnUpdate()
@@ -38,7 +31,7 @@ public sealed class Behavior : Component
 
 	protected override void OnFixedUpdate()
 	{
-		BallSpeed += 0.1f;
+		//BallSpeed += 0.1f;
 		if ( isPunched )
 		{
 			// Update position based on applied force
@@ -58,25 +51,9 @@ public sealed class Behavior : Component
 				//currentVelocity = Vector3.Zero; // Ensure velocity is reset
 			}
 		}
-		else
-		{
-			Follow();
-		}
+	
 	}
 
-	public void Follow()
-	{
-		Vector3 targetPos = target.Transform.Position + new Vector3( 0, 0, 50 );
-		Vector3 ballPos = Transform.Position;
-		Vector3 direction = (targetPos - ballPos).Normal;
-		float distance = Vector3.DistanceBetween( targetPos, ballPos );
-		Vector3 move = direction * BallSpeed  * Time.Delta;
-
-		Transform.Position += move;
-
-		// Debug information
-		//Log.Info( $"Follow - TargetPos: {targetPos}, BallPos: {ballPos}, Direction: {direction}, Move: {move}" );
-	}
 
 	public void punch( Vector3 direction )
 	{

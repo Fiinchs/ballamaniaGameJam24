@@ -18,12 +18,12 @@
       {
         "__type": "Sandbox.CharacterController",
         "__guid": "a9004a17-3f14-4690-baa2-a9be3da6b938",
-        "Acceleration": 10,
+        "Acceleration": 12.74,
         "Bounciness": 0.3,
         "GroundAngle": 45,
-        "Height": 64,
+        "Height": 71.68,
         "IgnoreLayers": "",
-        "Radius": 16,
+        "Radius": 4.42,
         "StepHeight": 18,
         "UseCollisionRules": false
       },
@@ -60,14 +60,22 @@
           "go": "6d54761d-da68-455f-9098-0ce3bd829e3c",
           "component_type": "CharacterController"
         },
+        "Colliderhitbox": {
+          "_type": "component",
+          "component_id": "b1512213-b269-4455-a1fd-8ecaed10be96",
+          "go": "6d54761d-da68-455f-9098-0ce3bd829e3c",
+          "component_type": "CapsuleCollider"
+        },
         "CounterHitbox": "0,0,-4.899943",
         "CranePosition": "0,0,74.00013",
-        "EyePosition": "0,0,37.49989",
+        "endHit": "20.7,21.8,35",
+        "EyePosition": "0.1999696,-1.200001,37.49989",
         "JumpStrength": 534.51,
         "PunchColdown": 0.5,
         "PunchRange": 65,
         "PunchStrength": 1,
-        "Runspeed": 548.67,
+        "Runspeed": 800,
+        "startHit": "20.7,-21.00001,35.6",
         "Walkspeed": 327.43
       },
       {
@@ -79,12 +87,13 @@
         "Team": "None"
       },
       {
-        "__type": "Sandbox.Prop",
-        "__guid": "b038c533-3b85-4235-83af-38a2043d9709",
-        "BodyGroups": 18446744073709551615,
-        "Health": 0,
-        "IsStatic": false,
-        "Tint": "1,1,1,1"
+        "__type": "Sandbox.CapsuleCollider",
+        "__guid": "b1512213-b269-4455-a1fd-8ecaed10be96",
+        "End": "0,0,55.29998",
+        "IsTrigger": false,
+        "Radius": 16.5,
+        "Start": "0,0,14.3",
+        "Static": false
       }
     ],
     "Children": [

@@ -80,8 +80,8 @@
           "GroupName": "Actions"
         },
         {
-          "Name": "reload",
-          "KeyboardCode": "r",
+          "Name": "dash",
+          "KeyboardCode": "R",
           "GamepadCode": "X",
           "GroupName": "Actions"
         },
