@@ -284,6 +284,7 @@ public sealed class Bbplayer : Component , Component.ITriggerListener
 	{
 		if ( AnimationHelper != null )
 		{
+			
 			AnimationHelper.HoldType = CitizenAnimationHelper.HoldTypes.Punch;
 			AnimationHelper.Target.Set( "b_attack", true );
 
@@ -293,7 +294,7 @@ public sealed class Bbplayer : Component , Component.ITriggerListener
 
 		var punchTraces = Scene.Trace
 		.FromTo( EyeWorldPostion, EyeWorldPostion + EyeAngles.Forward * PunchRange )
-		.Size( 30f )
+		.Size( 50f )
 		.WithoutTags( "player" )
 		.IgnoreGameObjectHierarchy( GameObject )
 		.RunAll();
