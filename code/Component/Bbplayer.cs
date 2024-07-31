@@ -5,8 +5,10 @@ using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 
-public sealed class Bbplayer : Component
+public sealed class Bbplayer : Component , Component.ITriggerListener
 {
+
+
 
 	[Property]
 	[Category( "Component" )]
@@ -20,10 +22,23 @@ public sealed class Bbplayer : Component
 	[Category( "Component" )]
 	public CitizenAnimationHelper AnimationHelper { get; set; }
 
+	[Property]
+	[Category( "Component" )]
+	public Model Citizenmodel { get; set; }
 
 	[Property]
 	public Vector3 EyePosition { get; set; }
 
+	[Property]
+	public Vector3 CounterHitbox { get; set; }
+
+	[Property]
+	[Category( "Component" )]
+	public CapsuleCollider modelhitbox { get; set; }
+	
+
+	[Property]
+	public Vector3 CranePosition { get; set; }
 
 	public Vector3 EyeWorldPostion => Transform.Local.PointToWorld( EyePosition );
 	/// <summary>
@@ -81,11 +96,21 @@ public sealed class Bbplayer : Component
 
 	protected override void DrawGizmos()
 	{
+
+		Gizmo.Draw.LineCylinder( EyePosition, EyePosition + Transform.Rotation.Forward * PunchRange, 5f, 5f, 10 );
+
 		if ( !Gizmo.IsSelected ) return;
 		var draw = Gizmo.Draw;
-		draw.LineSphere( EyePosition, 10f );
+		//draw.LineSphere( EyePosition, 10f );
+
+		//draw.LineSphere( CounterHitbox, 10f );
+
 
 		draw.LineCylinder( EyePosition, EyePosition + Transform.Rotation.Forward * PunchRange, 5f, 5f, 10 );
+
+		draw.LineCylinder( CranePosition, CounterHitbox, 30f, 30f, 50 );
+
+
 
 
 	}
@@ -108,6 +133,10 @@ public sealed class Bbplayer : Component
 			clothing.Apply( skinnedModelRenderer );
 		}
 	}
+
+
+
+
 
 	protected override void OnUpdate()
 	{
@@ -162,6 +191,21 @@ public sealed class Bbplayer : Component
 			Punch();
 		}
 
+		doesHit();	
+	}
+
+	public void doesHit()
+	{
+		var tr = Scene.Trace
+			.Capsule( new Capsule( Transform.Position, CranePosition, 50f) )
+			.Run();
+
+		if(tr.Hit)
+		{
+			//Log.Info( "nmort" );	
+			if ( tr.GameObject.Components.TryGet<Behavior>( out var behavior ) )
+				Log.Info( "mort" );
+		}
 	}
 
 	public void jumpMethod()
@@ -202,6 +246,8 @@ public sealed class Bbplayer : Component
 			}
 		}
 
+	
+
 	}
 
 	public void Punch()
@@ -214,21 +260,27 @@ public sealed class Bbplayer : Component
 
 		}
 
+
 		var punchTrace = Scene.Trace
 			.FromTo( EyeWorldPostion, EyeWorldPostion + EyeAngles.Forward * PunchRange )
-			.Size( 10f )
+			.Size( 30f )
 			.WithoutTags( "player" )
 			.IgnoreGameObjectHierarchy( GameObject )
 			.Run();
 
 		if ( punchTrace.Hit )
 			if ( punchTrace.GameObject.Components.TryGet<Behavior>( out var behavior ) )
-				behavior.punch( EyeWorldPostion );
+				behavior.punch( EyeAngles.Forward - new Vector3(0, 0, 0.3f));
+		
+				
 
 
-			_lastPunch = 0;
+		_lastPunch = 0;
 		
 	}
+
+
+
 	protected override void OnAwake()
 	{
 		base.OnAwake();

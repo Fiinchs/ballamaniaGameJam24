@@ -1,14 +1,13 @@
 {
   "RootObject": {
-    "__guid": "8834ad25-3f90-4d0e-bee9-2fe6a69c7b35",
+    "__guid": "ff4f610f-cf24-4a3b-9855-532669afd582",
     "Flags": 0,
     "Name": "ball",
-    "Scale": "0.2,0.2,0.2",
     "Enabled": true,
     "Components": [
       {
         "__type": "Sandbox.ModelRenderer",
-        "__guid": "3d671787-2241-4fd9-b9e1-fcb875ae424f",
+        "__guid": "6f66463a-7a65-4688-9e52-b38f6c49d94f",
         "BodyGroups": 18446744073709551615,
         "Model": "models/dev/sphere.vmdl",
         "RenderType": "On",
@@ -16,15 +15,16 @@
       },
       {
         "__type": "Sandbox.SphereCollider",
-        "__guid": "41f6aff1-6242-4ba6-b05e-58b7ae253d1a",
+        "__guid": "8d6398f9-2f55-47d7-90d9-39c3471d5dc8",
+        "__enabled": false,
         "Center": "0,0,0",
-        "IsTrigger": false,
-        "Radius": 10,
+        "IsTrigger": true,
+        "Radius": 29.699997,
         "Static": false
       },
       {
         "__type": "Unitinfo",
-        "__guid": "b531058e-83f0-444d-8b4d-503339478b5e",
+        "__guid": "a330a9c2-721a-477f-b806-08e67d1329b5",
         "HealthRegenAmount": 0.5,
         "HealthRegenTime": 3,
         "MaxHealt": 10,
@@ -32,14 +32,19 @@
       },
       {
         "__type": "Behavior",
-        "__guid": "fe46deaa-f956-4517-a260-cf4acf2c3467",
-        "BallSpeed": 500,
-        "EyePosition": "0,0,0"
+        "__guid": "3735f94c-9725-458c-b5e8-61ef7cb1c31a",
+        "BallSpeed": 520,
+        "hitbox": {
+          "_type": "component",
+          "component_id": "8d6398f9-2f55-47d7-90d9-39c3471d5dc8",
+          "go": "ff4f610f-cf24-4a3b-9855-532669afd582",
+          "component_type": "SphereCollider"
+        }
       }
     ],
     "Children": [
       {
-        "__guid": "384dafe5-f013-4bef-ae25-b971b4177068",
+        "__guid": "be0a45bb-350b-402f-8285-74f5f58b4ade",
         "Flags": 0,
         "Name": "Camera",
         "Position": "-442.5802,0,259.7493",
@@ -48,7 +53,7 @@
         "Components": [
           {
             "__type": "Sandbox.CameraComponent",
-            "__guid": "223aed5d-55ec-4901-8c1d-67f888002839",
+            "__guid": "de3096b6-ebbd-4919-8b5e-40bc6d3928a1",
             "BackgroundColor": "0.33333,0.46275,0.52157,1",
             "ClearFlags": "All",
             "FieldOfView": 60,

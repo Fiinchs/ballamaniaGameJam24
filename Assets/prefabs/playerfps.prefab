@@ -2,7 +2,7 @@
   "RootObject": {
     "__guid": "6d54761d-da68-455f-9098-0ce3bd829e3c",
     "Flags": 0,
-    "Name": "player",
+    "Name": "playerfps",
     "Enabled": true,
     "Components": [
       {
@@ -60,9 +60,9 @@
           "go": "6d54761d-da68-455f-9098-0ce3bd829e3c",
           "component_type": "CharacterController"
         },
-        "CounterHitbox": "0,0,-4.899943",
-        "CranePosition": "0,0,74.00013",
-        "EyePosition": "0,0,37.49989",
+        "CounterHitbox": "0,0,0.6000561",
+        "CranePosition": "0,0,78.20005",
+        "EyePosition": "0,0,35.99989",
         "JumpStrength": 534.51,
         "PunchColdown": 0.5,
         "PunchRange": 65,
@@ -77,14 +77,6 @@
         "HealthRegenTime": 3,
         "MaxHealt": 10,
         "Team": "None"
-      },
-      {
-        "__type": "Sandbox.Prop",
-        "__guid": "b038c533-3b85-4235-83af-38a2043d9709",
-        "BodyGroups": 18446744073709551615,
-        "Health": 0,
-        "IsStatic": false,
-        "Tint": "1,1,1,1"
       }
     ],
     "Children": [
@@ -92,8 +84,8 @@
         "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
         "Flags": 0,
         "Name": "Camera",
-        "Position": "-331.091,5.039453,212.4492",
-        "Rotation": "-0.00003441819,0.1942358,0.0001740968,0.9809549",
+        "Position": "7.792125,-0.04229872,77.01428",
+        "Rotation": "-0.0000002525656,0.001746834,0.0001774878,0.9999985",
         "Enabled": true,
         "Components": [
           {
@@ -101,7 +93,7 @@
             "__guid": "cf3cbf96-22b6-4be4-a5d0-672a96c17f9f",
             "BackgroundColor": "0.33333,0.46275,0.52157,1",
             "ClearFlags": "All",
-            "FieldOfView": 60,
+            "FieldOfView": 94.73,
             "IsMainCamera": true,
             "Orthographic": false,
             "OrthographicHeight": 1204,

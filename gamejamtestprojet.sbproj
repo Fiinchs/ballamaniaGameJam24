@@ -1,5 +1,5 @@
 {
-  "Title": "gamejamtestProjet",
+  "Title": "BallsMania",
   "Type": "game",
   "Org": "local",
   "Ident": "gamejamtestprojet",
@@ -62,7 +62,7 @@
           "GroupName": "Movement"
         },
         {
-          "Name": "Walk",
+          "Name": "ragdoll",
           "KeyboardCode": "alt",
           "GamepadCode": "None",
           "GroupName": "Movement"

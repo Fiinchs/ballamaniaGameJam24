@@ -55,6 +55,33 @@
       ]
     },
     {
+      "__guid": "0bb0f8cf-e608-4583-b24d-73e1f3fcc5e3",
+      "Flags": 0,
+      "Name": "Plane (1)",
+      "Position": "0,0,-20.80185",
+      "Scale": "52.98203,47.83646,5",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "7595f66b-c6b1-4a0b-874e-ad9ccb37bcfc",
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": "materials/default.vmat",
+          "Model": "models/dev/plane.vmdl",
+          "RenderType": "On",
+          "Tint": "0.39546,0.51163,0.27128,1"
+        },
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "f8744a8f-cce5-4ff7-aeaa-8af4ff398d4f",
+          "Center": "0,0,-5",
+          "IsTrigger": false,
+          "Scale": "100,100,10",
+          "Static": false
+        }
+      ]
+    },
+    {
       "__guid": "6ad70641-3c6c-4402-9c85-9a4969af4764",
       "Flags": 0,
       "Name": "Plane",
@@ -819,7 +846,7 @@
       "Components": [
         {
           "__type": "Sandbox.ModelRenderer",
-          "__guid": "6f66463a-7a65-4688-9e52-b38f6c49d94f",
+          "__guid": "6bdc3c2c-50c9-43df-aa05-9246b9339ddb",
           "BodyGroups": 18446744073709551615,
           "Model": "models/dev/sphere.vmdl",
           "RenderType": "On",
@@ -827,15 +854,15 @@
         },
         {
           "__type": "Sandbox.SphereCollider",
-          "__guid": "8d6398f9-2f55-47d7-90d9-39c3471d5dc8",
+          "__guid": "ae7b51ef-1c4b-4bf5-ac27-d7c2337e2fd7",
           "Center": "0,0,0",
           "IsTrigger": false,
-          "Radius": 10,
+          "Radius": 34.40006,
           "Static": false
         },
         {
           "__type": "Unitinfo",
-          "__guid": "a330a9c2-721a-477f-b806-08e67d1329b5",
+          "__guid": "f97157ca-391c-4a82-b7b8-5b5f43ae40ac",
           "HealthRegenAmount": 0.5,
           "HealthRegenTime": 3,
           "MaxHealt": 10,
@@ -843,12 +870,11 @@
         },
         {
           "__type": "Behavior",
-          "__guid": "3735f94c-9725-458c-b5e8-61ef7cb1c31a",
-          "BallSpeed": 50.5,
-          "EyePosition": "0,0,0",
+          "__guid": "13a1caae-691f-46c8-86a0-f6b37373eb29",
+          "BallSpeed": 470,
           "target": {
             "_type": "component",
-            "component_id": "0775b8b5-1dd5-4169-95e9-4ec673589ef2",
+            "component_id": "88b285f1-d6d3-4d65-b16b-37c227a9072e",
             "go": "96762e0a-228e-47b3-ab13-f0c281bd3b9e",
             "component_type": "Bbplayer"
           }
@@ -856,7 +882,7 @@
       ],
       "Children": [
         {
-          "__guid": "be0a45bb-350b-402f-8285-74f5f58b4ade",
+          "__guid": "12a68dfa-8334-4839-8b77-8dd9d5408f48",
           "Flags": 0,
           "Name": "Camera",
           "Position": "-442.5802,0,259.7493",
@@ -865,7 +891,7 @@
           "Components": [
             {
               "__type": "Sandbox.CameraComponent",
-              "__guid": "de3096b6-ebbd-4919-8b5e-40bc6d3928a1",
+              "__guid": "18174e04-346d-4003-b0d6-167d4afd2c54",
               "BackgroundColor": "0.33333,0.46275,0.52157,1",
               "ClearFlags": "All",
               "FieldOfView": 60,
