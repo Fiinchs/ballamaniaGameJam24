@@ -1,5 +1,6 @@
 using Sandbox;
 using System;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public sealed class Behavior : Component
 {
@@ -12,8 +13,7 @@ public sealed class Behavior : Component
 	[Range( 1f, 1000f, 10f )]
 	public float BallSpeed { get; set; } = 500f;
 
-	[Property]
-	public Bbplayer target { get; set; }
+	public Bbplayer target { get; set; } = null;
 
 	[Property]
 	public SphereCollider hitbox { get; set; }
@@ -27,7 +27,25 @@ public sealed class Behavior : Component
 
 	protected override void OnStart()
 	{
+		var traceball = Scene.Trace
+		.Sphere(1000f, Transform.LocalPosition, Transform.LocalPosition )
+		.Size( 1000f )
+		.Run();
 		
+
+
+		Log.Info( traceball );
+
+		if ( traceball.GameObject.Components.TryGet<Bbplayer>( out Bbplayer behavior ) )
+		{
+			target = behavior;
+			Log.Info( target );
+			
+		}
+	
+
+		
+
 	}
 
 	protected override void OnUpdate()
