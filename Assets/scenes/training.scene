@@ -62,67 +62,8 @@
       "Position": "-2096.465,-1209.038,-178.1794",
       "Scale": "0.5,0.5,0.5",
       "Tags": "ball",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "8e9972e6-0cff-43f8-8227-1a6e78bfcf20",
-          "BodyGroups": 18446744073709551615,
-          "Model": "models/dev/sphere.vmdl",
-          "RenderType": "On",
-          "Tint": "1,0.0093,0.0093,1"
-        },
-        {
-          "__type": "Sandbox.SphereCollider",
-          "__guid": "b48cc9ef-9409-45ed-ab34-af33bf73bee9",
-          "Center": "0,0,0",
-          "IsTrigger": false,
-          "Radius": 33.00009,
-          "Static": false
-        },
-        {
-          "__type": "Unitinfo",
-          "__guid": "71fe607e-829b-4f0d-8345-747301e39248",
-          "HealthRegenAmount": 0.5,
-          "HealthRegenTime": 3,
-          "MaxHealt": 10,
-          "Team": "None"
-        },
-        {
-          "__type": "Behavior",
-          "__guid": "a94b0ff2-e7bd-48c4-9ad6-a374ce9e4b7c",
-          "BallSpeed": 240
-        }
-      ],
-      "Children": [
-        {
-          "__guid": "ef8a8992-3883-48c0-8d30-2cfa207b7c2d",
-          "Flags": 0,
-          "Name": "Camera",
-          "Position": "-442.5802,0,259.7493",
-          "Rotation": "0,0.258819,0,0.9659259",
-          "Scale": "2,2,2",
-          "Components": [
-            {
-              "__type": "Sandbox.CameraComponent",
-              "__guid": "151a33a1-a3ae-4fb4-a7cc-b18183ef33e7",
-              "BackgroundColor": "0.33333,0.46275,0.52157,1",
-              "ClearFlags": "All",
-              "FieldOfView": 60,
-              "IsMainCamera": true,
-              "Orthographic": false,
-              "OrthographicHeight": 1204,
-              "Priority": 1,
-              "RenderExcludeTags": "",
-              "RenderTags": "",
-              "TargetEye": "None",
-              "Viewport": "0,0,1,1",
-              "ZFar": 10000,
-              "ZNear": 10
-            }
-          ]
-        }
-      ]
+      "__Prefab": "prefabs/ball.prefab",
+      "__PrefabVariables": {}
     },
     {
       "__guid": "01610064-93d5-4c97-b5cc-c2641d9124be",

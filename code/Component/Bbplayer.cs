@@ -5,7 +5,7 @@ using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 
-public sealed class Bbplayer : Component , Component.ITriggerListener
+public sealed class Bbplayer : Component, Component.ITriggerListener
 {
 
 
@@ -34,8 +34,11 @@ public sealed class Bbplayer : Component , Component.ITriggerListener
 
 	[Property]
 	[Category( "Component" )]
-	public CapsuleCollider Colliderhitbox { get; set; }
-	
+	public ModelPhysics Ragodll { get; set; }
+
+	[Property]
+	[Category( "Component" )]
+	public GameObject Batte { get; set; }
 
 	[Property]
 	public Vector3 CranePosition { get; set; }
@@ -89,8 +92,7 @@ public sealed class Bbplayer : Component , Component.ITriggerListener
 	[Range( 0f, 200f, 5f )]
 	public float PunchRange { get; set; } = 50f;
 
-
-
+	private bool isRagdolled = false; // Track the current state
 
 
 	public Angles EyeAngles { get; set; }
@@ -102,8 +104,8 @@ public sealed class Bbplayer : Component , Component.ITriggerListener
 
 	protected override void DrawGizmos()
 	{
-	
-		
+
+
 
 		if ( !Gizmo.IsSelected ) return;
 		var draw = Gizmo.Draw;
@@ -118,7 +120,7 @@ public sealed class Bbplayer : Component , Component.ITriggerListener
 
 		draw.LineCylinder( CranePosition, CounterHitbox, 30f, 30f, 50 );
 
-		
+
 	}
 
 	protected override void OnStart()
@@ -150,7 +152,7 @@ public sealed class Bbplayer : Component , Component.ITriggerListener
 		EyeAngles = EyeAngles.WithPitch( MathX.Clamp( EyeAngles.pitch, -100f, 50f ) );
 		Transform.Rotation = Rotation.FromYaw( EyeAngles.yaw );
 
-		
+
 
 		if ( Camera != null )
 		{
@@ -165,6 +167,14 @@ public sealed class Bbplayer : Component , Component.ITriggerListener
 			Camera.Transform.Position = cameraTrace.EndPosition;
 			Camera.Transform.LocalRotation = cameraTransform.Rotation;
 		}
+
+		if ( Input.Pressed( "ragdoll" ) )
+		{
+			// Toggle the ragdoll state
+			isRagdolled = !isRagdolled;
+			ragdoll( isRagdolled );
+		}
+
 	}
 
 
@@ -206,18 +216,20 @@ public sealed class Bbplayer : Component , Component.ITriggerListener
 		if ( Input.Pressed( "dash" ) )
 		{
 			dash();
-			
+
 		}
 
 	
+	
 
-		doesHit();	
+
+	doesHit();	
 	}
 
 	public void doesHit()
 	{
 		var tr = Scene.Trace
-			.Capsule( new Capsule( Transform.Position, CranePosition, 40f) )
+			.Capsule( new Capsule( Transform.Position, CranePosition, 35f) )
 			.Run();
 
 		if(tr.Hit)
@@ -320,9 +332,20 @@ public sealed class Bbplayer : Component , Component.ITriggerListener
 		
 	}
 
-	public void ragdoll()
+	public void ragdoll( bool enable )
 	{
-		Destroy();
+		if ( enable )
+		{
+			Log.Info( "Ragdolled" );
+			Ragodll.Enabled = true;
+			Batte.Components.Get<CapsuleCollider>().Enabled = false;
+		}
+		else
+		{
+			Log.Info( "Retour normal" );
+			Ragodll.Enabled = false;
+			Batte.Components.Get<CapsuleCollider>().Enabled = true;
+		}
 	}
 
 	protected override void OnAwake()
@@ -335,10 +358,7 @@ public sealed class Bbplayer : Component , Component.ITriggerListener
 		base.OnEnabled();
 	}
 
-	protected override void OnDestroy()
-	{
-		base.OnDestroy();
-	}
+
 
 
 }

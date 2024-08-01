@@ -63,7 +63,7 @@
         },
         {
           "Name": "ragdoll",
-          "KeyboardCode": "alt",
+          "KeyboardCode": "G",
           "GamepadCode": "None",
           "GroupName": "Movement"
         },
