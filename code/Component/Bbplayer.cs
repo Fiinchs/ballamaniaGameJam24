@@ -226,6 +226,13 @@ public sealed class Bbplayer : Component, Component.ITriggerListener
 	doesHit();	
 	}
 
+	public void dead()
+	{
+		Log.Info( "MORT" );
+		Ragodll.Enabled = true;
+		Batte.Components.Get<CapsuleCollider>().Enabled = false;
+	}
+
 	public void doesHit()
 	{
 		var tr = Scene.Trace
@@ -234,9 +241,12 @@ public sealed class Bbplayer : Component, Component.ITriggerListener
 
 		if(tr.Hit)
 		{
-			
-			if ( tr.GameObject.Components.TryGet<Behavior>( out var behavior ) )
-				Log.Info( "mort" );
+
+			if ( tr.GameObject.Components.TryGet<Behavior>( out var behavior ) ) { 
+				Log.Info( "Hitted" );
+				behavior.nouvelCible();
+				dead();
+			}
 		}
 	}
 

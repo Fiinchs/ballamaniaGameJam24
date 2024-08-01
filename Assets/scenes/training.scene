@@ -2,26 +2,6 @@
   "__guid": "0857f687-2a36-4c6f-9395-ebd023ef4c12",
   "GameObjects": [
     {
-      "__guid": "a59a45a2-71e3-483b-b20a-62961ad44058",
-      "Flags": 0,
-      "Name": "map",
-      "Position": "0,0,-211.1794",
-      "Tags": "map",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.MapInstance",
-          "__guid": "122c2b93-de80-411f-be04-270b0fa9cf1c",
-          "__version": 1,
-          "EnableCollision": true,
-          "MapName": "maps/training.vmap",
-          "NoOrigin": false,
-          "UseMapFromLaunch": false
-        }
-      ],
-      "Children": []
-    },
-    {
       "__guid": "e16a1710-4a10-48c4-a1e3-64c101015862",
       "Flags": 0,
       "Name": "2D Skybox",
@@ -59,9 +39,10 @@
       "__guid": "ad4c8e58-4836-4da0-adb5-27307dcc43ee",
       "Flags": 0,
       "Name": "ball",
-      "Position": "-2096.465,-1209.038,-178.1794",
+      "Position": "-2640.825,-1328.178,-178.1794",
       "Scale": "0.5,0.5,0.5",
       "Tags": "ball",
+      "Enabled": true,
       "__Prefab": "prefabs/ball.prefab",
       "__PrefabVariables": {}
     },
@@ -1317,6 +1298,24 @@
           "LightColor": "0.64619,0.66783,0.67442,1",
           "Shadows": true,
           "SkyColor": "0,0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "cdae1faf-1477-4843-b21f-4f12b22ad9e5",
+      "Flags": 0,
+      "Name": "map",
+      "Position": "-2048.091,-967.1281,-152.6825",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.MapInstance",
+          "__guid": "f894558a-3db4-470d-9f30-fd712bf3b7e3",
+          "__version": 1,
+          "EnableCollision": true,
+          "MapName": "level/blocking_a001.vmap",
+          "NoOrigin": false,
+          "UseMapFromLaunch": true
         }
       ]
     }

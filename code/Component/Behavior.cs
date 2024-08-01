@@ -115,4 +115,16 @@ public sealed class Behavior : Component
 		// Debug information
 		Log.Info( $"Punch - Direction: {direction}, Normalized Direction: {normalizedDirection}, Velocity: {currentVelocity}" );
 	}
+
+	public void nouvelCible(Vector3 Direction)
+	{
+
+	}
+
+	public void nouvelCible()
+	{
+
+	}
+
 }
+
