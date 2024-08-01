@@ -62,6 +62,7 @@
       "Position": "-2096.465,-1209.038,-178.1794",
       "Scale": "0.5,0.5,0.5",
       "Tags": "ball",
+      "Enabled": true,
       "Components": [
         {
           "__type": "Sandbox.ModelRenderer",
@@ -1355,6 +1356,26 @@
               "Static": false
             }
           ]
+        }
+      ]
+    },
+    {
+      "__guid": "1f8415be-e438-4d36-a303-dca6a9e9ade7",
+      "Flags": 0,
+      "Name": "Sun",
+      "Position": "-2455.027,-1054.416,1084.19",
+      "Rotation": "0,0.7071067,0,0.7071068",
+      "Tags": "light_directional,light",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.DirectionalLight",
+          "__guid": "d4d06b23-aa10-4dca-9e59-a028404765e7",
+          "FogMode": "WithoutShadows",
+          "FogStrength": 0.27,
+          "LightColor": "0.64619,0.66783,0.67442,1",
+          "Shadows": true,
+          "SkyColor": "0,0,0,0"
         }
       ]
     }

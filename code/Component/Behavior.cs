@@ -1,6 +1,5 @@
 using Sandbox;
 using System;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public sealed class Behavior : Component
 {
@@ -19,7 +18,6 @@ public sealed class Behavior : Component
 	public SphereCollider hitbox { get; set; }
 
 	// Force of the punch
-
 	private Vector3 currentVelocity = Vector3.Zero; // Current velocity of the ball
 	private bool isPunched = false; // Punch indicator
 	private float punchTimer = 0f; // Timer for punch duration
@@ -27,31 +25,31 @@ public sealed class Behavior : Component
 
 	protected override void OnStart()
 	{
-		var traceball = Scene.Trace
-		.Sphere(1000f, Transform.LocalPosition, Transform.LocalPosition )
-		.Size( 1000f )
-		.Run();
-		
-
-
-		Log.Info( traceball );
-
-		if ( traceball.GameObject.Components.TryGet<Bbplayer>( out Bbplayer behavior ) )
+		foreach ( var gameObject in Scene.GetAllObjects(true) )
 		{
-			target = behavior;
-			Log.Info( target );
-			
+			if ( gameObject.Components.TryGet<Bbplayer>( out Bbplayer behavior ) )
+			{
+				Log.Info( "Found Bbplayer component on GameObject: " + gameObject );
+				target = behavior; // Set the first found Bbplayer as the target
+				break;
+			}
 		}
-	
 
-		
-
+		if ( target == null )
+		{
+			Log.Warning( "No GameObject with Bbplayer component found in the scene." );
+		}
+		else
+		{
+			Log.Info( "Target set to: " + target );
+		}
 	}
+
 
 	protected override void OnUpdate()
 	{
 		// Debug information
-		//Log.Info( $"OnUpdate - Position: {Transform.Position}, Velocity: {currentVelocity}" );
+		// Log.Info($"OnUpdate - Position: {Transform.Position}, Velocity: {currentVelocity}");
 	}
 
 	protected override void OnFixedUpdate()
@@ -63,7 +61,7 @@ public sealed class Behavior : Component
 			Transform.Position += currentVelocity * Time.Delta;
 
 			// Gradually reduce velocity to simulate friction
-			//currentVelocity = Vector3.Lerp( currentVelocity, Vector3.Zero, Time.Delta * 2f );
+			// currentVelocity = Vector3.Lerp(currentVelocity, Vector3.Zero, Time.Delta * 2f);
 
 			// Update punch timer
 			punchTimer += Time.Delta;
@@ -73,7 +71,7 @@ public sealed class Behavior : Component
 			{
 				isPunched = false;
 				punchTimer = 0f;
-				//currentVelocity = Vector3.Zero; // Ensure velocity is reset
+				// currentVelocity = Vector3.Zero; // Ensure velocity is reset
 			}
 		}
 		else
@@ -84,16 +82,22 @@ public sealed class Behavior : Component
 
 	public void Follow()
 	{
+		if ( target == null )
+		{
+			Log.Warning( "No target to follow." );
+			return;
+		}
+
 		Vector3 targetPos = target.Transform.Position + new Vector3( 0, 0, 50 );
 		Vector3 ballPos = Transform.Position;
 		Vector3 direction = (targetPos - ballPos).Normal;
 		float distance = Vector3.DistanceBetween( targetPos, ballPos );
-		Vector3 move = direction * BallSpeed  * Time.Delta;
+		Vector3 move = direction * BallSpeed * Time.Delta;
 
 		Transform.Position += move;
 
 		// Debug information
-		//Log.Info( $"Follow - TargetPos: {targetPos}, BallPos: {ballPos}, Direction: {direction}, Move: {move}" );
+		// Log.Info($"Follow - TargetPos: {targetPos}, BallPos: {ballPos}, Direction: {direction}, Move: {move}");
 	}
 
 	public void punch( Vector3 direction )
@@ -111,6 +115,4 @@ public sealed class Behavior : Component
 		// Debug information
 		Log.Info( $"Punch - Direction: {direction}, Normalized Direction: {normalizedDirection}, Velocity: {currentVelocity}" );
 	}
-
-
 }

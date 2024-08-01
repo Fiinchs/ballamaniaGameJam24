@@ -1,13 +1,16 @@
 {
   "RootObject": {
-    "__guid": "ff4f610f-cf24-4a3b-9855-532669afd582",
+    "__guid": "ad4c8e58-4836-4da0-adb5-27307dcc43ee",
     "Flags": 0,
     "Name": "ball",
+    "Position": "-2096.465,-1209.038,-178.1794",
+    "Scale": "0.5,0.5,0.5",
+    "Tags": "ball",
     "Enabled": true,
     "Components": [
       {
         "__type": "Sandbox.ModelRenderer",
-        "__guid": "6f66463a-7a65-4688-9e52-b38f6c49d94f",
+        "__guid": "8e9972e6-0cff-43f8-8227-1a6e78bfcf20",
         "BodyGroups": 18446744073709551615,
         "Model": "models/dev/sphere.vmdl",
         "RenderType": "On",
@@ -15,16 +18,15 @@
       },
       {
         "__type": "Sandbox.SphereCollider",
-        "__guid": "8d6398f9-2f55-47d7-90d9-39c3471d5dc8",
-        "__enabled": false,
+        "__guid": "b48cc9ef-9409-45ed-ab34-af33bf73bee9",
         "Center": "0,0,0",
-        "IsTrigger": true,
-        "Radius": 29.699997,
+        "IsTrigger": false,
+        "Radius": 33.00009,
         "Static": false
       },
       {
         "__type": "Unitinfo",
-        "__guid": "a330a9c2-721a-477f-b806-08e67d1329b5",
+        "__guid": "71fe607e-829b-4f0d-8345-747301e39248",
         "HealthRegenAmount": 0.5,
         "HealthRegenTime": 3,
         "MaxHealt": 10,
@@ -32,19 +34,13 @@
       },
       {
         "__type": "Behavior",
-        "__guid": "3735f94c-9725-458c-b5e8-61ef7cb1c31a",
-        "BallSpeed": 520,
-        "hitbox": {
-          "_type": "component",
-          "component_id": "8d6398f9-2f55-47d7-90d9-39c3471d5dc8",
-          "go": "ff4f610f-cf24-4a3b-9855-532669afd582",
-          "component_type": "SphereCollider"
-        }
+        "__guid": "a94b0ff2-e7bd-48c4-9ad6-a374ce9e4b7c",
+        "BallSpeed": 240
       }
     ],
     "Children": [
       {
-        "__guid": "be0a45bb-350b-402f-8285-74f5f58b4ade",
+        "__guid": "ef8a8992-3883-48c0-8d30-2cfa207b7c2d",
         "Flags": 0,
         "Name": "Camera",
         "Position": "-442.5802,0,259.7493",
@@ -53,7 +49,7 @@
         "Components": [
           {
             "__type": "Sandbox.CameraComponent",
-            "__guid": "de3096b6-ebbd-4919-8b5e-40bc6d3928a1",
+            "__guid": "151a33a1-a3ae-4fb4-a7cc-b18183ef33e7",
             "BackgroundColor": "0.33333,0.46275,0.52157,1",
             "ClearFlags": "All",
             "FieldOfView": 60,
@@ -70,8 +66,7 @@
           }
         ]
       }
-    ],
-    "__variables": []
+    ]
   },
   "ShowInMenu": false,
   "MenuPath": null,

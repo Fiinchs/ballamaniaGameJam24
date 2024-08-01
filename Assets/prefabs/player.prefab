@@ -488,7 +488,7 @@
                                             "__type": "Sandbox.ModelRenderer",
                                             "__guid": "63419064-bf57-4835-966f-89722fa1ac30",
                                             "BodyGroups": 18446744073709551615,
-                                            "MaterialOverride": "props/materialbatt/batte.vmat",
+                                            "MaterialOverride": "materials/batttmaterial.vmat",
                                             "Model": "props/batt.vmdl",
                                             "RenderType": "On",
                                             "Tint": "1,1,1,1"
