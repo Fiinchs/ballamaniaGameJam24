@@ -1,0 +1,19 @@
+{
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "garedunord",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "garedunord",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [],
+      "Metadata": {
+        "SingleAssetSource": "level/garedunord.vmap"
+      }
+    }
+  }
+}

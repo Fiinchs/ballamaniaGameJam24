@@ -267,7 +267,7 @@ public sealed class Bbplayer : Component
 		{
 			AvaibleDoubleJump = true;
 			CharacterController.Acceleration = 20f;
-			CharacterController.ApplyFriction( 5f, 10f );
+			CharacterController.ApplyFriction( 10f, 20f);
 
 			if ( Input.Down( "Jump" ) )
 			{
