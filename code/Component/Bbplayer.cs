@@ -109,16 +109,16 @@ public sealed class Bbplayer : Component, Component.ITriggerListener
 
 		if ( !Gizmo.IsSelected ) return;
 		var draw = Gizmo.Draw;
-		draw.LineSphere( EyePosition, 30f );
+		//draw.LineSphere( EyePosition, 30f );
 
-		draw.LineSphere( CounterHitbox, 10f );
+		//draw.LineSphere( CounterHitbox, 10f );
 		//Gizmo.Draw.LineCylinder( EyePosition, EyePosition + Transform.Rotation.Forward * PunchRange, 5f, 5f, 10 );
 
-		draw.LineSphere( startHit, 10f );
-		draw.LineSphere( endHit, 10f );
-		draw.LineCylinder( EyePosition, EyePosition + Transform.Rotation.Forward * PunchRange, 5f, 5f, 10 );
+		//draw.LineSphere( startHit, 10f );
+		//draw.LineSphere( endHit, 10f );
+		//draw.LineCylinder( EyePosition, EyePosition + Transform.Rotation.Forward * PunchRange, 5f, 5f, 10 );
 
-		draw.LineCylinder( CranePosition, CounterHitbox, 30f, 30f, 50 );
+		//draw.LineCylinder( CranePosition, CounterHitbox, 30f, 30f, 50 );
 
 
 	}
@@ -203,7 +203,7 @@ public sealed class Bbplayer : Component, Component.ITriggerListener
 			AnimationHelper.IsGrounded = CharacterController.IsOnGround;
 			AnimationHelper.WithVelocity( CharacterController.Velocity );
 
-			if ( _lastPunch >= 0.1f )
+			if ( _lastPunch >= 5f )
 				AnimationHelper.HoldType = CitizenAnimationHelper.HoldTypes.None;
 
 		}
@@ -219,11 +219,11 @@ public sealed class Bbplayer : Component, Component.ITriggerListener
 
 		}
 
-	
-	
 
 
-	doesHit();	
+
+
+		doesHit();
 	}
 
 	public void dead()
@@ -233,28 +233,29 @@ public sealed class Bbplayer : Component, Component.ITriggerListener
 		Batte.Components.Get<CapsuleCollider>().Enabled = false;
 	}
 
-	public void doesHit()
+	public Boolean doesHit()
 	{
 		var tr = Scene.Trace
-			.Capsule( new Capsule( Transform.Position, CranePosition, 35f) )
+			.Capsule( new Capsule( Transform.Position, CranePosition, 35f ) )
 			.Run();
 
-		if(tr.Hit)
+		if ( tr.Hit )
 		{
 
-			if ( tr.GameObject.Components.TryGet<Behavior>( out var behavior ) ) { 
-				Log.Info( "Hitted" );
-				behavior.nouvelCible();
-				dead();
+			if ( tr.GameObject.Components.TryGet<Behavior>( out var behavior ) )
+			{
+				Log.Info( "Hitted" );               //dead();
+				return true;
 			}
 		}
+		return false;
 	}
 
 	public void dash()
 	{
 
-			Transform.LocalPosition += ((EyeAngles.Forward - new Vector3( 0, 0, 0.3f )) * 800f);
-			
+		Transform.LocalPosition += ((EyeAngles.Forward - new Vector3( 0, 0, 0.3f )) * 800f);
+
 
 
 
@@ -266,8 +267,8 @@ public sealed class Bbplayer : Component, Component.ITriggerListener
 		if ( CharacterController.IsOnGround )
 		{
 			AvaibleDoubleJump = true;
-			CharacterController.Acceleration = 10f;
-			CharacterController.ApplyFriction( 5f, 20f );
+			CharacterController.Acceleration = 20f;
+			CharacterController.ApplyFriction( 5f, 10f );
 
 			if ( Input.Down( "Jump" ) )
 			{
@@ -298,7 +299,7 @@ public sealed class Bbplayer : Component, Component.ITriggerListener
 			}
 		}
 
-	
+
 
 	}
 
@@ -306,7 +307,7 @@ public sealed class Bbplayer : Component, Component.ITriggerListener
 	{
 		if ( AnimationHelper != null )
 		{
-			
+
 			AnimationHelper.HoldType = CitizenAnimationHelper.HoldTypes.Punch;
 			AnimationHelper.Target.Set( "b_attack", true );
 
@@ -316,7 +317,7 @@ public sealed class Bbplayer : Component, Component.ITriggerListener
 
 		var punchTraces = Scene.Trace
 		.FromTo( EyeWorldPostion, EyeWorldPostion + EyeAngles.Forward * PunchRange )
-		.Size( 50f )
+		.Size( 100f )
 		.WithoutTags( "player" )
 		.IgnoreGameObjectHierarchy( GameObject )
 		.RunAll();
@@ -327,6 +328,7 @@ public sealed class Bbplayer : Component, Component.ITriggerListener
 		{
 			if ( punchTrace.GameObject.Components.TryGet<Behavior>( out var behavior ) )
 			{
+				Log.Info( "punched" );
 				behavior.punch( EyeAngles.Forward - new Vector3( 0, 0, 0.3f ) );
 			}
 
@@ -339,7 +341,7 @@ public sealed class Bbplayer : Component, Component.ITriggerListener
 
 
 		_lastPunch = 0;
-		
+
 	}
 
 	public void ragdoll( bool enable )

@@ -8,6 +8,7 @@
       {
         "__type": "Sandbox.SkinnedModelRenderer",
         "__guid": "bc6b24d3-2b76-45a6-b687-19bada6e2df0",
+        "AnimationGraph": "my_geo/my_fbx/citizen/animate.vanmgrph",
         "BodyGroups": 341,
         "CreateBoneObjects": true,
         "Model": "models/citizen/citizen.vmdl",
@@ -19,10 +20,8 @@
         "__type": "Sandbox.ModelPhysics",
         "__guid": "92b78958-00fe-4df6-a3be-4ae66f77f510",
         "__enabled": false,
-        "Locking": {
-          "Yaw": true
-        },
-        "Model": "models/citizen/citizen.vmdl",
+        "Locking": {},
+        "Model": "my_geo/my_fbx/citizen/citizenb.vmdl",
         "MotionEnabled": true,
         "Renderer": {
           "_type": "component",
@@ -45,8 +44,17 @@
         "UseCollisionRules": false
       },
       {
+        "__type": "Sandbox.CapsuleCollider",
+        "__guid": "b1512213-b269-4455-a1fd-8ecaed10be96",
+        "End": "0,0,55.29998",
+        "IsTrigger": true,
+        "Radius": 16.5,
+        "Start": "0,0,14.3",
+        "Static": false
+      },
+      {
         "__type": "Sandbox.Citizen.CitizenAnimationHelper",
-        "__guid": "7f13f7be-e6d8-425c-ae5b-c0448314de22",
+        "__guid": "cb7c7699-01e3-483e-a360-a85cd333e726",
         "BodyWeight": 1,
         "EyesWeight": 1,
         "HeadWeight": 1,
@@ -57,65 +65,6 @@
           "go": "6d54761d-da68-455f-9098-0ce3bd829e3c",
           "component_type": "SkinnedModelRenderer"
         }
-      },
-      {
-        "__type": "Bbplayer",
-        "__guid": "65c9bf96-aebe-4330-9713-4c1c6e80ce74",
-        "AnimationHelper": {
-          "_type": "component",
-          "component_id": "7f13f7be-e6d8-425c-ae5b-c0448314de22",
-          "go": "6d54761d-da68-455f-9098-0ce3bd829e3c",
-          "component_type": "CitizenAnimationHelper"
-        },
-        "Batte": {
-          "_type": "gameobject",
-          "go": "850a246e-d975-45a0-82aa-43a9dadf7eec"
-        },
-        "Camera": {
-          "_type": "gameobject",
-          "go": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a"
-        },
-        "CharacterController": {
-          "_type": "component",
-          "component_id": "a9004a17-3f14-4690-baa2-a9be3da6b938",
-          "go": "6d54761d-da68-455f-9098-0ce3bd829e3c",
-          "component_type": "CharacterController"
-        },
-        "Citizenmodel": "models/citizen/citizen.vmdl",
-        "CounterHitbox": "0,0,-4.899943",
-        "CranePosition": "0,0,74.00013",
-        "endHit": "20.7,21.8,35",
-        "EyePosition": "0.1999696,-1.200001,37.49989",
-        "JumpStrength": 534.51,
-        "PunchColdown": 0.5,
-        "PunchRange": 65,
-        "PunchStrength": 1,
-        "Ragodll": {
-          "_type": "component",
-          "component_id": "92b78958-00fe-4df6-a3be-4ae66f77f510",
-          "go": "6d54761d-da68-455f-9098-0ce3bd829e3c",
-          "component_type": "ModelPhysics"
-        },
-        "Runspeed": 800,
-        "startHit": "20.7,-21.00001,35.6",
-        "Walkspeed": 327.43
-      },
-      {
-        "__type": "Unitinfo",
-        "__guid": "3354f1c5-e75d-4904-b4de-d1265c5fc1ab",
-        "HealthRegenAmount": 0.5,
-        "HealthRegenTime": 3,
-        "MaxHealt": 10,
-        "Team": "None"
-      },
-      {
-        "__type": "Sandbox.CapsuleCollider",
-        "__guid": "b1512213-b269-4455-a1fd-8ecaed10be96",
-        "End": "0,0,55.29998",
-        "IsTrigger": false,
-        "Radius": 16.5,
-        "Start": "0,0,14.3",
-        "Static": false
       }
     ],
     "Children": [
@@ -505,26 +454,8 @@
                                         "Position": "6.067475,-8.534089,2.032474",
                                         "Rotation": "-0.6123723,-0.3535533,-0.3535534,0.6123723",
                                         "Enabled": true,
-                                        "Components": [
-                                          {
-                                            "__type": "Sandbox.ModelRenderer",
-                                            "__guid": "63419064-bf57-4835-966f-89722fa1ac30",
-                                            "BodyGroups": 18446744073709551615,
-                                            "MaterialOverride": "materials/batttmaterial.vmat",
-                                            "Model": "props/batt.vmdl",
-                                            "RenderType": "On",
-                                            "Tint": "1,1,1,1"
-                                          },
-                                          {
-                                            "__type": "Sandbox.CapsuleCollider",
-                                            "__guid": "31de064e-797c-4356-adcd-5a9c9cd93494",
-                                            "End": "0,0,58.00002",
-                                            "IsTrigger": false,
-                                            "Radius": 4.0999985,
-                                            "Start": "0,0,0",
-                                            "Static": false
-                                          }
-                                        ]
+                                        "__Prefab": "prefabs/batte/battepre.prefab",
+                                        "__PrefabVariables": {}
                                       }
                                     ]
                                   },

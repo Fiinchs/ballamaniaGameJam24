@@ -1,5 +1,5 @@
 {
-  "__guid": "ad5e8c0f-b31d-42f4-b572-57f68ff73e36",
+  "__guid": "bf1b8610-69e4-41c4-8470-f1b0d5271ae8",
   "GameObjects": [
     {
       "__guid": "bfc59c12-1ed2-4f91-8956-a95a315eac3c",
@@ -60,6 +60,7 @@
       "Name": "Plane (1)",
       "Position": "0,0,-20.80185",
       "Scale": "52.98203,47.83646,5",
+      "Tags": "map",
       "Enabled": true,
       "Components": [
         {
@@ -69,41 +70,34 @@
           "MaterialOverride": "materials/default.vmat",
           "Model": "models/dev/plane.vmdl",
           "RenderType": "On",
-          "Tint": "0.39546,0.51163,0.27128,1"
+          "Tint": "0.49264,0.95349,0,1"
         },
         {
           "__type": "Sandbox.BoxCollider",
           "__guid": "f8744a8f-cce5-4ff7-aeaa-8af4ff398d4f",
           "Center": "0,0,-5",
           "IsTrigger": false,
-          "Scale": "100,100,10",
+          "Scale": "100.1,100,10.39999",
           "Static": false
-        }
-      ]
-    },
-    {
-      "__guid": "6ad70641-3c6c-4402-9c85-9a4969af4764",
-      "Flags": 0,
-      "Name": "Plane",
-      "Position": "0,0,-20.80185",
-      "Scale": "17.47305,13.56184,5",
-      "Enabled": true,
-      "Components": [
+        },
         {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "0b6a18bf-fdb8-4661-970e-ef635bfa9baa",
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": "materials/default.vmat",
-          "Model": "models/dev/plane.vmdl",
-          "RenderType": "On",
-          "Tint": "0.39546,0.51163,0.27128,1"
+          "__type": "Sandbox.Rigidbody",
+          "__guid": "edeb7e7e-4a49-4c9a-80bc-52b59da23a53",
+          "AngularDamping": 0,
+          "Gravity": false,
+          "LinearDamping": 0,
+          "Locking": {},
+          "MassOverride": 0,
+          "MotionEnabled": false,
+          "RigidbodyFlags": 0,
+          "StartAsleep": false
         },
         {
           "__type": "Sandbox.BoxCollider",
-          "__guid": "0715cb55-1733-4f5e-8560-c288b8695631",
-          "Center": "0,0,-5",
-          "IsTrigger": false,
-          "Scale": "100,100,10",
+          "__guid": "94f2b67a-40ec-44de-a4c0-738ccbd21181",
+          "Center": "0,-0.00000001490116,-0.2000028",
+          "IsTrigger": true,
+          "Scale": "100,100,1.099999",
           "Static": false
         }
       ]
@@ -825,6 +819,11 @@
           "MotionEnabled": true,
           "RigidbodyFlags": 0,
           "StartAsleep": false
+        },
+        {
+          "__type": "PropppBehavior",
+          "__guid": "cdacf9c4-554f-40c9-819b-0afd68fc78c3",
+          "BallSpeed": 500
         }
       ]
     },
@@ -833,8 +832,63 @@
       "Flags": 0,
       "Name": "player",
       "Position": "-390.7653,58.84326,-16.80185",
+      "Rotation": "0,0,-0.8660254,0.5000001",
       "Enabled": true,
       "__Prefab": "prefabs/player.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "57cb7b7e-8500-4aed-a9d5-69628a8f09f3",
+      "Flags": 0,
+      "Name": "cub",
+      "Position": "-436.393,-68.32385,26.82643",
+      "Enabled": true
+    },
+    {
+      "__guid": "a5964fef-17a1-42d2-a070-31cd7f20b91b",
+      "Flags": 0,
+      "Name": "Cube",
+      "Position": "-436.393,-68.32385,26.82643",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "91ee9d78-d139-4f96-a472-ad980015b91d",
+          "BodyGroups": 18446744073709551615,
+          "Model": "models/dev/box.vmdl",
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "44fbd0aa-176d-4509-bb8f-c794204491af",
+          "Center": "0,0,0",
+          "IsTrigger": false,
+          "Scale": "50,50,50",
+          "Static": false
+        },
+        {
+          "__type": "Sandbox.Rigidbody",
+          "__guid": "fbfaac23-61c7-45c8-8dcf-39ee9abfd9a3",
+          "AngularDamping": 0,
+          "Gravity": true,
+          "LinearDamping": 0,
+          "Locking": {},
+          "MassOverride": 0,
+          "MotionEnabled": true,
+          "RigidbodyFlags": 0,
+          "StartAsleep": false
+        }
+      ]
+    },
+    {
+      "__guid": "fc805938-2fb8-4038-b850-11cd6c9e5146",
+      "Flags": 0,
+      "Name": "ball",
+      "Position": "-2116.277,1097.156,72.5538",
+      "Tags": "ball",
+      "Enabled": true,
+      "__Prefab": "prefabs/ball.prefab",
       "__PrefabVariables": {}
     }
   ],

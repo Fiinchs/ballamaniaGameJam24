@@ -1,5 +1,6 @@
 using Sandbox;
 using System;
+using System.Numerics;
 
 public sealed class Behavior : Component
 {
@@ -13,43 +14,32 @@ public sealed class Behavior : Component
 	public float BallSpeed { get; set; } = 500f;
 
 	public Bbplayer target { get; set; } = null;
+	private Bbplayer previousTarget = null;
 
 	[Property]
 	public SphereCollider hitbox { get; set; }
 
-	// Force of the punch
-	private Vector3 currentVelocity = Vector3.Zero; // Current velocity of the ball
-	private bool isPunched = false; // Punch indicator
-	private float punchTimer = 0f; // Timer for punch duration
-	public float punchDuration = 1f; // Duration for which the ball is repelled
+	private Vector3 currentVelocity = Vector3.Zero;
+	private bool isPunched = false;
+	private bool isLockedOnTarget = false;
+
+	private float gravityStrength = 5f;
+	private float turnRate = 1f;
 
 	protected override void OnStart()
 	{
-		foreach ( var gameObject in Scene.GetAllObjects(true) )
+		foreach ( var gameObject in Scene.GetAllObjects( true ) )
 		{
 			if ( gameObject.Components.TryGet<Bbplayer>( out Bbplayer behavior ) )
 			{
-				Log.Info( "Found Bbplayer component on GameObject: " + gameObject );
-				target = behavior; // Set the first found Bbplayer as the target
+				//target = behavior;
 				break;
 			}
 		}
-
-		if ( target == null )
-		{
-			Log.Warning( "No GameObject with Bbplayer component found in the scene." );
-		}
-		else
-		{
-			Log.Info( "Target set to: " + target );
-		}
 	}
-
 
 	protected override void OnUpdate()
 	{
-		// Debug information
-		// Log.Info($"OnUpdate - Position: {Transform.Position}, Velocity: {currentVelocity}");
 	}
 
 	protected override void OnFixedUpdate()
@@ -57,74 +47,145 @@ public sealed class Behavior : Component
 		BallSpeed += 0.1f;
 		if ( isPunched )
 		{
-			// Update position based on applied force
 			Transform.Position += currentVelocity * Time.Delta;
-
-			// Gradually reduce velocity to simulate friction
-			// currentVelocity = Vector3.Lerp(currentVelocity, Vector3.Zero, Time.Delta * 2f);
-
-			// Update punch timer
-			punchTimer += Time.Delta;
-
-			// If punch duration is over, stop punch movement and resume following
-			if ( punchTimer >= punchDuration )
-			{
-				isPunched = false;
-				punchTimer = 0f;
-				// currentVelocity = Vector3.Zero; // Ensure velocity is reset
-			}
+			isPunched = false;
 		}
 		else
 		{
-			Follow();
+			//Follow();
 		}
+		Transform.Position += currentVelocity * Time.Delta;
+		terrainColider();
+		
 	}
 
 	public void Follow()
 	{
 		if ( target == null )
 		{
-			Log.Warning( "No target to follow." );
 			return;
 		}
 
-		Vector3 targetPos = target.Transform.Position + new Vector3( 0, 0, 50 );
 		Vector3 ballPos = Transform.Position;
-		Vector3 direction = (targetPos - ballPos).Normal;
-		float distance = Vector3.DistanceBetween( targetPos, ballPos );
-		Vector3 move = direction * BallSpeed * Time.Delta;
+		Vector3 targetPos = target.Transform.Position;
 
-		Transform.Position += move;
+		if ( isLockedOnTarget )
+		{
+			Vector3 directionToTarget2 = (targetPos - ballPos).Normal;
+			currentVelocity = directionToTarget2 * BallSpeed;
+			Transform.Position += currentVelocity * Time.Delta;
+			return;
+		}
 
-		// Debug information
-		// Log.Info($"Follow - TargetPos: {targetPos}, BallPos: {ballPos}, Direction: {direction}, Move: {move}");
+		Vector3 gravityVector = (targetPos - ballPos).Normal * gravityStrength;
+		Vector3 directionToTarget = (targetPos - ballPos).Normal;
+		Vector3 currentDirection = currentVelocity.Normal;
+		Vector3 desiredDirection = (directionToTarget + gravityVector).Normal;
+		Vector3 interpolatedDirection = Vector3.Lerp( currentDirection, desiredDirection, turnRate * Time.Delta );
+
+		Vector3 move = interpolatedDirection * BallSpeed * Time.Delta;
+		Vector3 newPosition = Transform.Position + move;
+
+		Transform.Position = newPosition;
+		currentVelocity = move;
+
+		if ( Vector3.DistanceBetween( Transform.Position, target.Transform.Position ) < 5f )
+		{
+			isLockedOnTarget = true;
+		}
 	}
 
 	public void punch( Vector3 direction )
 	{
-		// Normalize the direction
 		Vector3 normalizedDirection = direction.Normal;
-
-		// Calculate velocity
+		BallSpeed += 20;
 		currentVelocity = normalizedDirection * BallSpeed;
 
-		// Apply the punch force in the specified direction
 		isPunched = true;
-		punchTimer = 0f; // Reset the punch timer
 
-		// Debug information
-		Log.Info( $"Punch - Direction: {direction}, Normalized Direction: {normalizedDirection}, Velocity: {currentVelocity}" );
+		Bbplayer closestPlayer = FindClosestPlayerInVD( direction.Normal );
+
+		if ( closestPlayer != null )
+		{
+			previousTarget = target;
+			target = closestPlayer;
+		}
 	}
 
-	public void nouvelCible(Vector3 Direction)
+	public Bbplayer FindClosestPlayerInVD( Vector3 direction )
 	{
+		Bbplayer closestPlayer = null;
+		float minAngle = float.MaxValue;
 
+		foreach ( var gameObject in Scene.GetAllObjects( true ) )
+		{
+			if ( gameObject.Components.TryGet<Bbplayer>( out Bbplayer behavior ) )
+			{
+				if ( behavior == target || behavior == previousTarget ) continue;
+
+				Vector3 toPlayer = behavior.Transform.LocalPosition - this.Transform.LocalPosition;
+				Vector3 normalizedToP = toPlayer.Normal;
+
+				float angle = Vector3.Dot( direction, normalizedToP );
+
+				if ( angle > 0 && angle < minAngle )
+				{
+					minAngle = angle;
+					closestPlayer = behavior;
+				}
+			}
+		}
+		return closestPlayer;
 	}
 
-	public void nouvelCible()
-	{
+	private float lastCollisionTime = -1f;
+	private float collisionCooldown = 0.1f; // 100ms cooldown between collisions
 
+	public void terrainColider()
+	{
+		if ( hitbox != null && (lastCollisionTime < 0 || Time.Now - lastCollisionTime > collisionCooldown) )
+		{
+			foreach ( Collider hit in hitbox.Touching )
+			{
+				if ( hit != null && hit.GameObject.Tags.Has( "map" ) )
+				{
+					// Debugging: Print which collider we are hitting
+					Console.WriteLine( $"Hitting collider: {hit.GameObject.Name}" );
+
+					// Calculate the normal of the surface hit
+					Vector3 hitNormal = hit.Transform.LocalScale;
+
+					// Debugging: Print the hit normal and current velocity
+					Console.WriteLine( $"Hit normal: {hitNormal}" );
+					Console.WriteLine( $"Current velocity before reflect: {currentVelocity}" );
+
+					// Reflect the current velocity using the hit normal
+					currentVelocity = Vector3.Reflect( currentVelocity, hitNormal );
+
+					// Debugging: Print the new velocity after reflect
+					Console.WriteLine( $"New velocity after reflect: {currentVelocity}" );
+
+					// Optionally, apply a damping factor to simulate energy loss on bounce
+					float dampingFactor = 0.8f;
+					currentVelocity *= dampingFactor;
+
+					// Adjust the position slightly to ensure it is not stuck in the collider
+					Transform.Position += hitNormal * 0.1f;
+
+					// Debugging: Print the new position
+					Console.WriteLine( $"New position: {Transform.Position}" );
+
+					// Set isPunched to false to prevent immediate re-application of velocity
+					isPunched = false;
+
+					// Record the time of this collision
+					lastCollisionTime = Time.Now;
+
+					// Break after handling the first collision to avoid multiple collisions in a single frame
+					break;
+				}
+			}
+		}
 	}
 
 }
-

@@ -1,0 +1,36 @@
+{
+  "RootObject": {
+    "__guid": "850a246e-d975-45a0-82aa-43a9dadf7eec",
+    "Flags": 0,
+    "Name": "battedebaiseprout",
+    "Position": "6.067475,-8.534089,2.032474",
+    "Rotation": "-0.6123723,-0.3535533,-0.3535534,0.6123723",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Sandbox.ModelRenderer",
+        "__guid": "63419064-bf57-4835-966f-89722fa1ac30",
+        "BodyGroups": 18446744073709551615,
+        "MaterialOverride": "my_mats/my_mm/batttmaterial.vmat",
+        "Model": "props/batt.vmdl",
+        "RenderType": "On",
+        "Tint": "1,1,1,1"
+      },
+      {
+        "__type": "Sandbox.CapsuleCollider",
+        "__guid": "31de064e-797c-4356-adcd-5a9c9cd93494",
+        "End": "0,0,58.00002",
+        "IsTrigger": false,
+        "Radius": 4.0999985,
+        "Start": "0,0,0",
+        "Static": false
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

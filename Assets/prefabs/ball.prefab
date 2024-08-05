@@ -3,7 +3,6 @@
     "__guid": "ad4c8e58-4836-4da0-adb5-27307dcc43ee",
     "Flags": 0,
     "Name": "ball",
-    "Position": "-2096.465,-1209.038,-178.1794",
     "Scale": "0.5,0.5,0.5",
     "Tags": "ball",
     "Enabled": true,
@@ -23,19 +22,6 @@
         "IsTrigger": false,
         "Radius": 33.00009,
         "Static": false
-      },
-      {
-        "__type": "Unitinfo",
-        "__guid": "71fe607e-829b-4f0d-8345-747301e39248",
-        "HealthRegenAmount": 0.5,
-        "HealthRegenTime": 3,
-        "MaxHealt": 10,
-        "Team": "None"
-      },
-      {
-        "__type": "Behavior",
-        "__guid": "a94b0ff2-e7bd-48c4-9ad6-a374ce9e4b7c",
-        "BallSpeed": 240
       }
     ],
     "Children": [
@@ -66,7 +52,8 @@
           }
         ]
       }
-    ]
+    ],
+    "__variables": []
   },
   "ShowInMenu": false,
   "MenuPath": null,
