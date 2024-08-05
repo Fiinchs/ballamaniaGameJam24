@@ -103,10 +103,157 @@
       "__PrefabVariables": {}
     },
     {
+      "__guid": "6cfa9f3f-7cde-49fc-92bd-be2b49d1b8fc",
+      "Flags": 0,
+      "Name": "Plane (4)",
+      "Position": "-1336.18,215.6966,8.615793",
+      "Rotation": "0.7071068,-0.0000001192093,0.7071068,0.0000001192093",
+      "Scale": "14.88164,28.87896,5",
+      "Tags": "map",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "9f1348df-ba2b-43de-b4bc-24106e493ee3",
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": "materials/default.vmat",
+          "Model": "models/dev/plane.vmdl",
+          "RenderType": "On",
+          "Tint": "0.95349,0,0,0"
+        },
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "c8d01594-e937-4c0f-81e0-aef442fc5b24",
+          "Center": "0,0,-5",
+          "IsTrigger": false,
+          "Scale": "100.1,100,10.39999",
+          "Static": false
+        },
+        {
+          "__type": "Sandbox.Rigidbody",
+          "__guid": "07ce5885-39af-4614-bd20-a4bfe15fa87f",
+          "AngularDamping": 0,
+          "Gravity": false,
+          "LinearDamping": 0,
+          "Locking": {},
+          "MassOverride": 0,
+          "MotionEnabled": false,
+          "RigidbodyFlags": 0,
+          "StartAsleep": false
+        },
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "46472b3d-0f26-48b5-aa1f-af9f60592dcf",
+          "Center": "0,-0.00000001490116,-0.2000028",
+          "IsTrigger": true,
+          "Scale": "100,100,1.099999",
+          "Static": false
+        }
+      ]
+    },
+    {
+      "__guid": "c8aebb00-7596-4e46-bccb-6a7423d1335d",
+      "Flags": 0,
+      "Name": "Plane (3)",
+      "Position": "-253.2636,1620.436,8.615765",
+      "Rotation": "0.5,-0.5000001,0.5,0.5000001",
+      "Scale": "14.88164,28.87896,5",
+      "Tags": "map",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "4a46502d-e5b8-47c6-810f-9e836ea2e31e",
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": "materials/default.vmat",
+          "Model": "models/dev/plane.vmdl",
+          "RenderType": "On",
+          "Tint": "0.95349,0,0,0"
+        },
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "da54caa8-ee60-43c8-9f9e-c0fa3aab61b8",
+          "Center": "0,0,-5",
+          "IsTrigger": false,
+          "Scale": "100.1,100,10.39999",
+          "Static": false
+        },
+        {
+          "__type": "Sandbox.Rigidbody",
+          "__guid": "3202d16d-06d6-49b8-ab3f-35bb5db3dee8",
+          "AngularDamping": 0,
+          "Gravity": false,
+          "LinearDamping": 0,
+          "Locking": {},
+          "MassOverride": 0,
+          "MotionEnabled": false,
+          "RigidbodyFlags": 0,
+          "StartAsleep": false
+        },
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "2b09c9d4-a9ae-4ba1-a9b5-13262d13843f",
+          "Center": "0,-0.00000001490116,-0.2000028",
+          "IsTrigger": true,
+          "Scale": "100,100,1.099999",
+          "Static": false
+        }
+      ]
+    },
+    {
+      "__guid": "d6a15469-2d05-41c0-a500-ba776a8d59e3",
+      "Flags": 0,
+      "Name": "Plane (2)",
+      "Position": "1077.514,1017.447,8.615408",
+      "Rotation": "0,-0.7071068,0,0.7071068",
+      "Scale": "14.88164,13.10291,5",
+      "Tags": "map",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "c2f8ea6e-432a-410b-9a66-723e3dc1b266",
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": "materials/default.vmat",
+          "Model": "models/dev/plane.vmdl",
+          "RenderType": "On",
+          "Tint": "0.95349,0,0,0"
+        },
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "16b10df4-6283-41be-a038-8b0745827103",
+          "Center": "0,0,-5",
+          "IsTrigger": false,
+          "Scale": "100.1,100,10.39999",
+          "Static": false
+        },
+        {
+          "__type": "Sandbox.Rigidbody",
+          "__guid": "a5ecb52a-e05a-4c3f-8aa8-f43cb7c57409",
+          "AngularDamping": 0,
+          "Gravity": false,
+          "LinearDamping": 0,
+          "Locking": {},
+          "MassOverride": 0,
+          "MotionEnabled": false,
+          "RigidbodyFlags": 0,
+          "StartAsleep": false
+        },
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "f70143cf-8027-44d8-93fd-6f4faefb37f7",
+          "Center": "0,-0.00000001490116,-0.2000028",
+          "IsTrigger": true,
+          "Scale": "100,100,1.099999",
+          "Static": false
+        }
+      ]
+    },
+    {
       "__guid": "8231e3aa-e6ee-4e67-aad1-fed6598b623b",
       "Flags": 0,
       "Name": "Plane (1)",
-      "Position": "0,391.96,8.610954",
+      "Position": "0,391.96,8.61404",
       "Scale": "52.98203,47.83646,5",
       "Tags": "map",
       "Enabled": true,
@@ -118,7 +265,7 @@
           "MaterialOverride": "materials/default.vmat",
           "Model": "models/dev/plane.vmdl",
           "RenderType": "On",
-          "Tint": "0.49264,0.95349,0,1"
+          "Tint": "0.49264,0.95349,0,0"
         },
         {
           "__type": "Sandbox.BoxCollider",
@@ -154,9 +301,8 @@
       "__guid": "2677c791-a8c7-434c-a6e3-a7c7163f4961",
       "Flags": 0,
       "Name": "ball",
-      "Position": "-68.60736,221.4309,56.76135",
+      "Position": "-68.60736,221.4309,85.74496",
       "Tags": "ball",
-      "Enabled": true,
       "__Prefab": "prefabs/ball.prefab",
       "__PrefabVariables": {}
     },
@@ -169,6 +315,67 @@
       "Enabled": true,
       "__Prefab": "prefabs/player/botprefab.prefab",
       "__PrefabVariables": {}
+    },
+    {
+      "__guid": "743a1175-3654-4077-b83b-8e3c2109fd67",
+      "Flags": 0,
+      "Name": "botprefab",
+      "Position": "-1331.18,-562.4948,126.5577",
+      "Enabled": true,
+      "__Prefab": "prefabs/player/botprefab.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "6b94c55d-7bec-4c66-a5d6-70aa3d631300",
+      "Flags": 0,
+      "Name": "botprefab (1)",
+      "Position": "-1288.799,600.2633,29.37027",
+      "Rotation": "-0.00000004470348,-0.000000000000003552714,1,0.0000001685874",
+      "Enabled": true,
+      "__Prefab": "prefabs/player/botprefab.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "6e413612-53e5-47e5-9535-089c869ea9c9",
+      "Flags": 0,
+      "Name": "Cube",
+      "Position": "842.0834,-68.32385,51.3975",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "925f71e3-1484-4021-bf2e-6674311346d7",
+          "BodyGroups": 18446744073709551615,
+          "Model": "models/dev/box.vmdl",
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "Sandbox.Rigidbody",
+          "__guid": "7af21c7b-e2a1-462d-9ad5-f9e97f35f40c",
+          "AngularDamping": 0,
+          "Gravity": false,
+          "LinearDamping": 0,
+          "Locking": {},
+          "MassOverride": 0,
+          "MotionEnabled": true,
+          "RigidbodyFlags": 0,
+          "StartAsleep": false
+        },
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "9e535f13-f52f-480f-b8dd-95e28ddb6dfe",
+          "Center": "0,0,0",
+          "IsTrigger": false,
+          "Scale": "50.89999,50,50",
+          "Static": false
+        },
+        {
+          "__type": "PropppBehavior",
+          "__guid": "2a5b355c-077a-4840-a8f6-fe9439a247e6",
+          "BallSpeed": 500
+        }
+      ]
     }
   ],
   "SceneProperties": {

@@ -92,12 +92,24 @@
         "Citizenmodel": "my_geo/my_fbx/citizen/citizenb.vmdl",
         "CounterHitbox": "0,0,0",
         "CranePosition": "0,0,0",
-        "endHit": "0,0,0",
-        "EyePosition": "0,0,64.19994",
+        "DashRange": 500,
+        "EyePosition": "0,0,64.69994",
+        "Hitboxe": {
+          "_type": "component",
+          "component_id": "b1512213-b269-4455-a1fd-8ecaed10be96",
+          "go": "6d54761d-da68-455f-9098-0ce3bd829e3c",
+          "component_type": "CapsuleCollider"
+        },
         "JumpStrength": 400,
         "PunchColdown": 0.5,
         "PunchRange": 50,
-        "PunchStrength": 1,
+        "PunchStrength": 1000,
+        "PunchZone": {
+          "_type": "component",
+          "component_id": "d3ae9706-6cda-482e-ac27-7ba55fbed9f5",
+          "go": "6d54761d-da68-455f-9098-0ce3bd829e3c",
+          "component_type": "SphereCollider"
+        },
         "Ragodll": {
           "_type": "component",
           "component_id": "92b78958-00fe-4df6-a3be-4ae66f77f510",
@@ -105,12 +117,19 @@
           "component_type": "ModelPhysics"
         },
         "Runspeed": 800,
-        "startHit": "0,0,0",
         "Walkspeed": 400
       },
       {
         "__type": "Cible",
         "__guid": "bbd4a70e-d20b-458b-a204-454fa418a070"
+      },
+      {
+        "__type": "Sandbox.SphereCollider",
+        "__guid": "d3ae9706-6cda-482e-ac27-7ba55fbed9f5",
+        "Center": "42.89999,-0.4,37.30012",
+        "IsTrigger": true,
+        "Radius": 45.100037,
+        "Static": false
       }
     ],
     "Children": [
@@ -118,8 +137,8 @@
         "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
         "Flags": 0,
         "Name": "Camera",
-        "Position": "-331.091,5.039453,212.4492",
-        "Rotation": "-0.00003441819,0.1942358,0.0001740968,0.9809549",
+        "Position": "-357.7951,5.029984,99.12621",
+        "Rotation": "-0.000005056859,0.02879548,0.000177398,0.9995853",
         "Enabled": true,
         "Components": [
           {
@@ -127,7 +146,7 @@
             "__guid": "cf3cbf96-22b6-4be4-a5d0-672a96c17f9f",
             "BackgroundColor": "0.33333,0.46275,0.52157,1",
             "ClearFlags": "All",
-            "FieldOfView": 60,
+            "FieldOfView": 61.71,
             "IsMainCamera": true,
             "Orthographic": false,
             "OrthographicHeight": 1204,

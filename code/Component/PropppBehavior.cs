@@ -3,72 +3,90 @@ using System;
 
 public sealed class PropppBehavior : Component
 {
-	[Property]
-	[Category( "Stats" )]
-	[Range( 1f, 1000f, 10f )]
-	public float BallSpeed { get; set; } = 500f;
+    [Property]
+    [Category( "Stats" )]
+    [Range( 1f, 1000f, 10f )]
+    public float BallSpeed { get; set; } = 500f;
 
-	[Property]
-	public SphereCollider hitbox { get; set; }
+    [Property]
+    public BoxCollider hitbox { get; set; }
 
-	// Force of the punch
+    // Force of the punch
+    private Vector3 currentVelocity = Vector3.Zero; // Current velocity of the ball
+    private bool isPunched = false; // Punch indicator
+    private float punchTimer = 0f; // Timer for punch duration
+    public float punchDuration = 2f; // Duration for which the ball is repelled
+    private float initialPunchForce;
 
-	private Vector3 currentVelocity = Vector3.Zero; // Current velocity of the ball
-	private bool isPunched = false; // Punch indicator
-	private float punchTimer = 0f; // Timer for punch duration
-	public float punchDuration = 2f; // Duration for which the ball is repelled
+    protected override void OnStart()
+    {
+        base.OnStart();
+    }
 
-	protected override void OnStart()
-	{
-		base.OnStart();
-	}
+    protected override void OnUpdate()
+    {
+        // Debug information
+        //Log.Info( $"OnUpdate - Position: {Transform.Position}, Velocity: {currentVelocity}" );
+    }
 
-	protected override void OnUpdate()
-	{
-		// Debug information
-		//Log.Info( $"OnUpdate - Position: {Transform.Position}, Velocity: {currentVelocity}" );
-	}
+    protected override void OnFixedUpdate()
+    {
+        if (isPunched)
+        {
+            // Update position based on applied force
+            Transform.Position += currentVelocity * Time.Delta;
 
-	protected override void OnFixedUpdate()
-	{
-		//BallSpeed += 0.1f;
-		if ( isPunched )
-		{
-			// Update position based on applied force
-			Transform.Position += currentVelocity * Time.Delta;
+            // Decelerate the ball linearly
+            float decelerationRate = initialPunchForce / punchDuration;
+            float deceleration = decelerationRate * Time.Delta;
+            currentVelocity -= currentVelocity.Normal * deceleration;
 
-			// Gradually reduce velocity to simulate friction
-			//currentVelocity = Vector3.Lerp( currentVelocity, Vector3.Zero, Time.Delta * 2f );
+            // Stop the punch effect after the duration
+            punchTimer += Time.Delta;
+            if (punchTimer >= punchDuration)
+            {
+                isPunched = false;
+                currentVelocity = Vector3.Zero;
+            }
+        }
+        terrainColider();
+    }
 
-			// Update punch timer
-			punchTimer += Time.Delta;
+    public void punch(Vector3 direction, float PunchForce)
+    {
+        // Normalize the direction
+        Vector3 normalizedDirection = direction.Normal;
 
-			// If punch duration is over, stop punch movement and resume following
-			if ( punchTimer >= punchDuration )
-			{
-				isPunched = false;
-				punchTimer = 0f;
-				//currentVelocity = Vector3.Zero; // Ensure velocity is reset
-			}
-		}
-	
-	}
+        // Calculate velocity
+        currentVelocity = normalizedDirection * PunchForce;
+        initialPunchForce = PunchForce;
 
+        // Apply the punch force in the specified direction
+        isPunched = true;
+        punchTimer = 0f; // Reset the punch timer
 
-	public void punch( Vector3 direction )
-	{
-		// Normalize the direction
-		Vector3 normalizedDirection = direction.Normal;
+        // Debug information
+        Log.Info($"Punch - Direction: {direction}, Normalized Direction: {normalizedDirection}, Velocity: {currentVelocity}");
+    }
 
-		// Calculate velocity
-		currentVelocity = normalizedDirection * BallSpeed;
+    public void terrainColider()
+    {
+        if (hitbox != null)
+        {
+            foreach (Collider hit in hitbox.Touching)
+            {
+                if (hit != null && hit.GameObject.Tags.Has("map"))
+                {
+                    // Envoyer la balle vers le haut avec sa vitesse actuelle
+                    currentVelocity = new Vector3(currentVelocity.x, currentVelocity.y, Math.Abs(currentVelocity.Length));
 
-		// Apply the punch force in the specified direction
-		isPunched = true;
-		punchTimer = 0f; // Reset the punch timer
+                    // Repositionner la balle légèrement au-dessus du point de collision pour éviter de rester coincée
+                    Transform.Position += Vector3.Up * (hitbox.Center + 0.1f); // Ajustez le décalage en fonction de votre hitbox
 
-		// Debug information
-		Log.Info( $"Punch - Direction: {direction}, Normalized Direction: {normalizedDirection}, Velocity: {currentVelocity}" );
-	}
-
+                    Log.Info("Collision with terrain detected. Adjusting position and velocity.");
+                    break; // Sortir de la boucle après la première collision détectée
+                }
+            }
+        }
+    }
 }

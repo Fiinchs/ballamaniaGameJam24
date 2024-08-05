@@ -40,13 +40,17 @@ public sealed class Bbplayer : Component
 	public GameObject Batte { get; set; }
 
 	[Property]
+	[Category( "Hitbox" )]
+	public CapsuleCollider Hitboxe { get; set; }
+
+
+	[Property]
+	[Category( "Hitbox" )]
+	public SphereCollider PunchZone { get; set; }
+
+	[Property]
 	public Vector3 CranePosition { get; set; }
 
-	[Property]
-	public Vector3 startHit { get; set; }
-
-	[Property]
-	public Vector3 endHit { get; set; }
 
 	public Vector3 EyeWorldPostion => Transform.Local.PointToWorld( EyePosition );
 	/// <summary>
@@ -77,7 +81,7 @@ public sealed class Bbplayer : Component
 
 	[Property]
 	[Category( "Stats" )]
-	[Range( 0f, 5f, 0.1f )]
+	[Range( 0f, 1000f, 100f )]
 	public float PunchStrength { get; set; } = 1f;
 
 
@@ -90,6 +94,11 @@ public sealed class Bbplayer : Component
 	[Category( "Stats" )]
 	[Range( 0f, 200f, 5f )]
 	public float PunchRange { get; set; } = 50f;
+
+	[Property]
+	[Category( "Stats" )]
+	[Range( 0f, 1000f, 5f )]
+	public float DashRange { get; set; } = 500f;
 
 	private bool isRagdolled = false; // Track the current state
 
@@ -234,31 +243,45 @@ public sealed class Bbplayer : Component
 
 	public Boolean doesHit()
 	{
-		var tr = Scene.Trace
-			.Capsule( new Capsule( Transform.Position, CranePosition, 35f ) )
-			.Run();
-
-		if ( tr.Hit )
-		{
-
-			if ( tr.GameObject.Components.TryGet<Behavior>( out var behavior ) )
+		if (Hitboxe != null)
+   		{
+        foreach (Collider hit in Hitboxe.Touching)
+        {
+			if ( hit.GameObject.Components.TryGet<Behavior>( out var behavior ) )
 			{
 				Log.Info( "Hitted" );               //dead();
 				return true;
 			}
 		}
+		}
 		return false;
 	}
 
-	public void dash()
-	{
+public void dash()
+{
+    var start = EyeWorldPostion;
+    var direction = EyeAngles.Forward;
+    var end = start + (direction * DashRange);
 
-		Transform.LocalPosition += ((EyeAngles.Forward - new Vector3( 0, 0, 0.3f )) * 800f);
+    var dashTrace = Scene.Trace
+        .FromTo(EyeWorldPostion, EyeWorldPostion + EyeAngles.Forward * DashRange)
+        .Size(100f)
+        .IgnoreGameObjectHierarchy(GameObject)
+        .Run();
 
+    if (dashTrace.Hit)
+    {
+        // Téléporter à la position de l'objet frappé, en conservant la même hauteur
+        Transform.LocalPosition = new Vector3(dashTrace.HitPosition.x, dashTrace.HitPosition.y, dashTrace.HitPosition.z);
+        Log.Info(dashTrace.HitPosition);
+    }
+    else
+    {
+        // Téléporter à la distance maximale DashRange dans la direction du regard, en conservant la même hauteur
+        Transform.LocalPosition = new Vector3(end.x, end.y, end.z);
+    }
+}
 
-
-
-	}
 
 	public void jumpMethod()
 	{
@@ -312,28 +335,19 @@ public sealed class Bbplayer : Component
 
 
 		}
+		if ( PunchZone == null ) return;
 
-
-		var punchTraces = Scene.Trace
-		.FromTo( EyeWorldPostion, EyeWorldPostion + EyeAngles.Forward * PunchRange )
-		.Size( 100f )
-		.WithoutTags( "player" )
-		.IgnoreGameObjectHierarchy( GameObject )
-		.RunAll();
-
-		if ( punchTraces == null || punchTraces.Count() == 0 ) return;
-
-		foreach ( var punchTrace in punchTraces )
-		{
-			if ( punchTrace.GameObject.Components.TryGet<Behavior>( out var behavior ) )
+		foreach (Collider hit in PunchZone.Touching)
+        {
+			if ( hit.GameObject.Components.TryGet<Behavior>( out var behavior ) )
 			{
 				Log.Info( "punched" );
-				behavior.punch( EyeAngles.Forward - new Vector3( 0, 0, 0.3f ) );
+				behavior.punch( EyeAngles.Forward );
 			}
 
-			if ( punchTrace.GameObject.Components.TryGet<PropppBehavior>( out var propbehavior ) )
+			if ( hit.GameObject.Components.TryGet<PropppBehavior>( out var propbehavior ) )
 			{
-				propbehavior.punch( EyeAngles.Forward - new Vector3( 0, 0, 0.3f ) );
+				propbehavior.punch( EyeAngles.Forward , PunchStrength);
 			}
 		}
 

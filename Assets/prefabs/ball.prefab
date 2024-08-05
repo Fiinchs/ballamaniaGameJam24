@@ -26,8 +26,8 @@
       {
         "__type": "Behavior",
         "__guid": "e93e0bb6-9766-4cc2-9f26-020963dd8677",
-        "gravityStrength": 3.9999852,
-        "turnRate": 8.299997,
+        "gravityStrength": 78.90002,
+        "turnRate": 6.1999974,
         "BallSpeed": 500,
         "hitbox": {
           "_type": "component",
