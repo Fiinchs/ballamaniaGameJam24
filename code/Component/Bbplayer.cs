@@ -5,11 +5,10 @@ using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 
-public sealed class Bbplayer : Component, Component.ITriggerListener
+
+public sealed class Bbplayer : Component
 {
-
-
-
+	
 	[Property]
 	[Category( "Component" )]
 	public GameObject Camera { get; set; }
@@ -102,7 +101,7 @@ public sealed class Bbplayer : Component, Component.ITriggerListener
 
 	TimeSince _lastPunch;
 
-	protected override void DrawGizmos()
+		protected override void DrawGizmos()
 	{
 
 
@@ -369,8 +368,5 @@ public sealed class Bbplayer : Component, Component.ITriggerListener
 	{
 		base.OnEnabled();
 	}
-
-
-
 
 }

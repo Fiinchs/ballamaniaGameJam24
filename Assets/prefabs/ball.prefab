@@ -22,6 +22,10 @@
         "IsTrigger": false,
         "Radius": 33.00009,
         "Static": false
+      },
+      {
+        "__type": "Behavior",
+        "__guid": "e93e0bb6-9766-4cc2-9f26-020963dd8677"
       }
     ],
     "Children": [

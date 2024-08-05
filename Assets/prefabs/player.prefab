@@ -65,6 +65,48 @@
           "go": "6d54761d-da68-455f-9098-0ce3bd829e3c",
           "component_type": "SkinnedModelRenderer"
         }
+      },
+      {
+        "__type": "Bbplayer",
+        "__guid": "ba0982b7-2d86-4a01-b848-48d45056d644",
+        "AnimationHelper": {
+          "_type": "component",
+          "component_id": "cb7c7699-01e3-483e-a360-a85cd333e726",
+          "go": "6d54761d-da68-455f-9098-0ce3bd829e3c",
+          "component_type": "CitizenAnimationHelper"
+        },
+        "Batte": {
+          "_type": "gameobject",
+          "go": "850a246e-d975-45a0-82aa-43a9dadf7eec"
+        },
+        "Camera": {
+          "_type": "gameobject",
+          "go": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a"
+        },
+        "CharacterController": {
+          "_type": "component",
+          "component_id": "a9004a17-3f14-4690-baa2-a9be3da6b938",
+          "go": "6d54761d-da68-455f-9098-0ce3bd829e3c",
+          "component_type": "CharacterController"
+        },
+        "Citizenmodel": "my_geo/my_fbx/citizen/citizenb.vmdl",
+        "CounterHitbox": "0,0,0",
+        "CranePosition": "0,0,0",
+        "endHit": "0,0,0",
+        "EyePosition": "0,0,64.19994",
+        "JumpStrength": 400,
+        "PunchColdown": 0.5,
+        "PunchRange": 50,
+        "PunchStrength": 1,
+        "Ragodll": {
+          "_type": "component",
+          "component_id": "92b78958-00fe-4df6-a3be-4ae66f77f510",
+          "go": "6d54761d-da68-455f-9098-0ce3bd829e3c",
+          "component_type": "ModelPhysics"
+        },
+        "Runspeed": 800,
+        "startHit": "0,0,0",
+        "Walkspeed": 200
       }
     ],
     "Children": [

@@ -1,6 +1,4 @@
 using Sandbox;
-using System;
-using System.Numerics;
 
 public sealed class Behavior : Component
 {
@@ -150,20 +148,20 @@ public sealed class Behavior : Component
 				if ( hit != null && hit.GameObject.Tags.Has( "map" ) )
 				{
 					// Debugging: Print which collider we are hitting
-					Console.WriteLine( $"Hitting collider: {hit.GameObject.Name}" );
+					Log.Info( $"Hitting collider: {hit.GameObject.Name}" );
 
 					// Calculate the normal of the surface hit
 					Vector3 hitNormal = hit.Transform.LocalScale;
 
 					// Debugging: Print the hit normal and current velocity
-					Console.WriteLine( $"Hit normal: {hitNormal}" );
-					Console.WriteLine( $"Current velocity before reflect: {currentVelocity}" );
+					Log.Info( $"Hit normal: {hitNormal}" );
+					Log.Info( $"Current velocity before reflect: {currentVelocity}" );
 
 					// Reflect the current velocity using the hit normal
 					currentVelocity = Vector3.Reflect( currentVelocity, hitNormal );
 
 					// Debugging: Print the new velocity after reflect
-					Console.WriteLine( $"New velocity after reflect: {currentVelocity}" );
+					Log.Info( $"New velocity after reflect: {currentVelocity}" );
 
 					// Optionally, apply a damping factor to simulate energy loss on bounce
 					float dampingFactor = 0.8f;
@@ -173,7 +171,7 @@ public sealed class Behavior : Component
 					Transform.Position += hitNormal * 0.1f;
 
 					// Debugging: Print the new position
-					Console.WriteLine( $"New position: {Transform.Position}" );
+					Log.Info( $"New position: {Transform.Position}" );
 
 					// Set isPunched to false to prevent immediate re-application of velocity
 					isPunched = false;

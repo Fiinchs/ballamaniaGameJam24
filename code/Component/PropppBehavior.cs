@@ -71,5 +71,4 @@ public sealed class PropppBehavior : Component
 		Log.Info( $"Punch - Direction: {direction}, Normalized Direction: {normalizedDirection}, Velocity: {currentVelocity}" );
 	}
 
-
 }

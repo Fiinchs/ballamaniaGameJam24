@@ -878,6 +878,10 @@
           "MotionEnabled": true,
           "RigidbodyFlags": 0,
           "StartAsleep": false
+        },
+        {
+          "__type": "PropppBehavior",
+          "__guid": "52050dbe-2062-46e5-aa73-2a67a540aec5"
         }
       ]
     },
